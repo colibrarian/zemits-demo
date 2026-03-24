@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zemits Baltic — Kosmetik Experte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-deep:   #0a1628;
+    --blue-mid:    #0d2545;
+    --blue-brand:  #1a4a8a;
+    --blue-light:  #2d7dd2;
+    --blue-glow:   #4da6ff;
+    --blue-soft:   rgba(45,125,210,0.18);
+    --white:       #ffffff;
+    --white-80:    rgba(255,255,255,0.80);
+    --white-40:    rgba(255,255,255,0.40);
+    --white-10:    rgba(255,255,255,0.10);
+    --white-06:    rgba(255,255,255,0.06);
+    --glass-bg:    rgba(255,255,255,0.07);
+    --glass-border:rgba(255,255,255,0.14);
+    --accent:      #4da6ff;
+    --gold:        #c8a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--blue-deep);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none;
+  }
+  .cursor-dot {
+    width: 8px; height: 8px; background: var(--blue-glow);
+    border-radius: 50%; position: absolute;
+    transform: translate(-50%,-50%);
+    transition: transform .1s ease;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--blue-glow);
+    border-radius: 50%; position: absolute;
+    transform: translate(-50%,-50%);
+    transition: transform .18s ease, width .3s, height .3s, opacity .3s;
+    opacity: .5;
+  }
+  body:hover .cursor-ring { opacity: .7; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 22px 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .4s, backdrop-filter .4s;
+  }
+  nav.scrolled {
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.25rem; letter-spacing: .08em;
+    color: var(--white); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--blue-glow); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+    color: var(--blue-glow);
+  }
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--white-80); text-decoration: none;
+    font-size: .85rem; letter-spacing: .06em;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 300;
+    transition: color .25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--blue-glow);
+    transition: width .3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--blue-light); color: var(--white) !important;
+    padding: 9px 22px; border-radius: 100px;
+    font-weight: 500 !important; transition: background .25s, box-shadow .25s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--blue-glow) !important; box-shadow: 0 0 20px rgba(77,166,255,.4) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 0 6vw;
+  }
+
+  /* animated gradient background */
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 80% at 80% 40%, rgba(26,74,138,.55) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 60% at 20% 70%, rgba(13,37,69,.8) 0%, transparent 60%),
+                linear-gradient(160deg, #0a1628 0%, #0d2545 60%, #0a1628 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 70%);
+  }
+  .hero-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none; animation: orbFloat 8s ease-in-out infinite;
+  }
+  .orb-1 { width: 500px; height: 500px; right: -100px; top: -100px; background: rgba(45,125,210,.25); animation-delay: 0s; }
+  .orb-2 { width: 300px; height: 300px; right: 200px; bottom: 50px; background: rgba(77,166,255,.12); animation-delay: -3s; }
+  .orb-3 { width: 200px; height: 200px; left: 10%; top: 30%; background: rgba(26,74,138,.2); animation-delay: -5s; }
+  @keyframes orbFloat {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(20px,-30px) scale(1.05); }
+    66% { transform: translate(-10px,20px) scale(.97); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    padding: 7px 18px; border-radius: 100px;
+    font-size: .75rem; font-family: 'Space Grotesk',sans-serif;
+    letter-spacing: .12em; color: var(--blue-glow);
+    margin-bottom: 32px;
+    animation: fadeUp .8s ease both;
+  }
+  .badge-dot { width: 6px; height: 6px; background: var(--blue-glow); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    font-weight: 300; line-height: 1.05;
+    margin-bottom: 28px;
+    animation: fadeUp .9s .1s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--blue-glow); }
+  .hero-title strong { font-weight: 600; display: block; }
+
+  .hero-sub {
+    font-size: 1.05rem; color: var(--white-80);
+    line-height: 1.7; max-width: 480px;
+    margin-bottom: 44px;
+    animation: fadeUp .9s .2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp .9s .3s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue-glow));
+    color: var(--white); border: none;
+    padding: 15px 36px; border-radius: 100px;
+    font-family: 'Space Grotesk',sans-serif; font-size: .9rem; font-weight: 500;
+    letter-spacing: .06em; cursor: none; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: box-shadow .3s, transform .2s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .btn-primary:hover { box-shadow: 0 0 30px rgba(77,166,255,.45), 0 4px 20px rgba(0,0,0,.3); transform: translateY(-2px); }
+  .btn-primary:hover::before { opacity: 1; }
+
+  .btn-ghost {
+    background: transparent; color: var(--white-80);
+    border: 1px solid var(--glass-border);
+    padding: 15px 36px; border-radius: 100px;
+    font-family: 'Space Grotesk',sans-serif; font-size: .9rem; font-weight: 300;
+    cursor: none; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    backdrop-filter: blur(8px); background: var(--glass-bg);
+    transition: border-color .3s, color .3s, box-shadow .3s;
+  }
+  .btn-ghost:hover { border-color: var(--blue-glow); color: var(--white); box-shadow: inset 0 0 20px rgba(77,166,255,.08); }
+
+  /* floating glass card */
+  .hero-card {
+    position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
+    z-index: 2;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(24px); border-radius: 24px;
+    padding: 36px 32px; width: 300px;
+    animation: fadeUp 1s .4s ease both, floatCard 6s 1.4s ease-in-out infinite;
+  }
+  @keyframes floatCard {
+    0%,100%{ transform: translateY(-50%) translateY(0); }
+    50%{ transform: translateY(-50%) translateY(-12px); }
+  }
+  .hero-card-stat { margin-bottom: 24px; }
+  .hero-card-stat:last-child { margin-bottom: 0; }
+  .stat-number {
+    font-family: 'Cormorant Garamond',serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--white); line-height: 1;
+  }
+  .stat-number span { color: var(--blue-glow); }
+  .stat-label { font-size: .8rem; color: var(--white-40); letter-spacing: .08em; margin-top: 4px; }
+  .hero-card-divider { height: 1px; background: var(--glass-border); margin: 20px 0; }
+  .hero-card-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(45,125,210,.2); border: 1px solid rgba(45,125,210,.35);
+    padding: 5px 12px; border-radius: 100px;
+    font-size: .72rem; color: var(--blue-glow); font-family: 'Space Grotesk',sans-serif;
+    letter-spacing: .08em;
+  }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--white-40); font-size: .72rem; letter-spacing: .1em;
+    font-family: 'Space Grotesk',sans-serif;
+    animation: fadeUp 1s .8s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 48px; background: linear-gradient(to bottom, var(--blue-glow), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 120px 6vw; position: relative; }
+  .section-label {
+    font-family: 'Space Grotesk',sans-serif;
+    font-size: .72rem; letter-spacing: .2em; color: var(--blue-glow);
+    text-transform: uppercase; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--blue-glow); }
+  .section-title {
+    font-family: 'Cormorant Garamond',serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 300; line-height: 1.12; color: var(--white);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--blue-glow); }
+  .section-sub {
+    font-size: 1rem; color: var(--white-80); line-height: 1.75; max-width: 520px;
+  }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: linear-gradient(180deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    overflow: hidden;
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; margin-top: 60px;
+  }
+  .about-visual {
+    position: relative; height: 500px;
+  }
+  .about-img-placeholder {
+    position: absolute; inset: 0;
+    border-radius: 20px; overflow: hidden;
+    background: linear-gradient(135deg, rgba(26,74,138,.4), rgba(45,125,210,.2));
+    border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond',serif;
+    font-size: 1rem; color: var(--white-40); letter-spacing: .08em;
+  }
+  .about-img-placeholder::before {
+    content: ''; position: absolute; inset: 0;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(77,166,255,.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(26,74,138,.3) 0%, transparent 50%);
+  }
+  .about-img-label {
+    position: relative; text-align: center;
+  }
+  .img-icon {
+    width: 60px; height: 60px; border: 1px solid var(--glass-border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px; font-size: 1.4rem;
+    background: var(--glass-bg); backdrop-filter: blur(10px);
+  }
+
+  .about-float-card {
+    position: absolute; bottom: -24px; right: -24px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px); border-radius: 18px;
+    padding: 24px 28px; z-index: 2;
+    width: 220px;
+  }
+  .about-float-card .big { font-family:'Cormorant Garamond',serif; font-size: 2.4rem; font-weight:300; color:var(--blue-glow); }
+  .about-float-card .label { font-size:.8rem; color:var(--white-40); margin-top:4px; }
+
+  .about-float-card-2 {
+    position: absolute; top: -20px; left: -20px;
+    background: rgba(45,125,210,.15); border: 1px solid rgba(45,125,210,.3);
+    backdrop-filter: blur(20px); border-radius: 14px;
+    padding: 16px 20px; z-index: 2;
+  }
+  .about-float-card-2 .tag-text { font-size:.8rem; color:var(--white-80); font-family:'Space Grotesk',sans-serif; }
+
+  .about-text {}
+  .team-cards { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
+  .team-card {
+    display: flex; gap: 20px; align-items: center;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px); border-radius: 16px; padding: 20px 24px;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .team-card:hover { border-color: rgba(77,166,255,.35); box-shadow: 0 0 30px rgba(77,166,255,.08); }
+  .team-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-brand), var(--blue-light));
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--white);
+    border: 1px solid var(--glass-border);
+  }
+  .team-info {}
+  .team-name { font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:.95rem; color:var(--white); }
+  .team-role { font-size:.8rem; color:var(--white-40); margin-top:4px; line-height:1.5; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--blue-deep); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .service-card {
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px); border-radius: 20px;
+    padding: 36px 28px; position: relative; overflow: hidden;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    cursor: none;
+  }
+  .service-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 0%, rgba(45,125,210,.15), transparent 60%);
+    opacity: 0; transition: opacity .4s;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(77,166,255,.3); box-shadow: 0 20px 40px rgba(0,0,0,.3), 0 0 30px rgba(77,166,255,.08); }
+  .service-card:hover::before { opacity: 1; }
+  .service-card.featured {
+    background: linear-gradient(135deg, rgba(26,74,138,.5), rgba(45,125,210,.2));
+    border-color: rgba(77,166,255,.3);
+    grid-column: span 1;
+  }
+
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(45,125,210,.2); border: 1px solid rgba(45,125,210,.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 24px;
+  }
+  .service-name {
+    font-family: 'Space Grotesk',sans-serif; font-weight: 500;
+    font-size: 1.05rem; color: var(--white); margin-bottom: 12px;
+  }
+  .service-desc {
+    font-size: .87rem; color: var(--white-40); line-height: 1.7;
+  }
+  .service-arrow {
+    position: absolute; bottom: 28px; right: 28px;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; color: var(--blue-glow);
+    transition: background .3s, border-color .3s;
+  }
+  .service-card:hover .service-arrow { background: var(--blue-glow); border-color: var(--blue-glow); color: var(--white); }
+
+  .services-cta { text-align: center; margin-top: 60px; }
+
+  /* ── SEMINARS ── */
+  #seminars {
+    background: linear-gradient(180deg, var(--blue-mid) 0%, var(--blue-deep) 100%);
+    overflow: hidden;
+  }
+  .seminars-inner { margin-top: 64px; }
+  .seminars-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .seminar-item {
+    display: grid; grid-template-columns: 120px 1fr auto;
+    gap: 32px; align-items: center;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px); border-radius: 20px;
+    padding: 28px 36px;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    cursor: none; position: relative; overflow: hidden;
+  }
+  .seminar-item::after {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--blue-light), var(--blue-glow));
+    opacity: 0; transition: opacity .3s;
+  }
+  .seminar-item:hover { transform: translateX(6px); border-color: rgba(77,166,255,.3); box-shadow: 0 0 30px rgba(77,166,255,.08); }
+  .seminar-item:hover::after { opacity: 1; }
+
+  .seminar-date-block { text-align: center; }
+  .seminar-day { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:300; color:var(--white); line-height:1; }
+  .seminar-month { font-family:'Space Grotesk',sans-serif; font-size:.72rem; letter-spacing:.12em; color:var(--blue-glow); text-transform:uppercase; margin-top:4px; }
+  .seminar-time { font-size:.8rem; color:var(--white-40); margin-top:6px; }
+
+  .seminar-info {}
+  .seminar-title { font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:1rem; color:var(--white); margin-bottom:8px; }
+  .seminar-desc { font-size:.85rem; color:var(--white-40); line-height:1.65; }
+
+  .seminar-meta { text-align: right; }
+  .seminar-price {
+    font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--white);
+  }
+  .seminar-price-label { font-size:.72rem; color:var(--white-40); margin-bottom:12px; }
+  .btn-seminar {
+    display: inline-block;
+    background: transparent; color: var(--blue-glow);
+    border: 1px solid rgba(77,166,255,.4);
+    padding: 9px 22px; border-radius: 100px;
+    font-family:'Space Grotesk',sans-serif; font-size:.8rem; font-weight:400;
+    letter-spacing:.06em; text-decoration: none; cursor: none;
+    transition: background .3s, color .3s;
+    white-space: nowrap;
+  }
+  .btn-seminar:hover { background: var(--blue-glow); color: var(--white); }
+
+  .seminar-banner {
+    margin-top: 60px;
+    background: linear-gradient(135deg, rgba(26,74,138,.6), rgba(45,125,210,.3));
+    border: 1px solid rgba(77,166,255,.25);
+    backdrop-filter: blur(20px); border-radius: 24px;
+    padding: 48px 56px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .seminar-banner-text {}
+  .seminar-banner-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:var(--white); margin-bottom:10px; }
+  .seminar-banner-sub { font-size:.9rem; color:var(--white-80); line-height:1.6; }
+
+  /* ── CONTACTS ── */
+  #contacts { background: var(--blue-deep); }
+  .contacts-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+    margin-top: 64px; align-items: start;
+  }
+  .contacts-info {}
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(45,125,210,.15); border: 1px solid rgba(45,125,210,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0; margin-top: 2px;
+  }
+  .contact-label { font-size:.75rem; color:var(--white-40); letter-spacing:.08em; margin-bottom:4px; font-family:'Space Grotesk',sans-serif; text-transform:uppercase; }
+  .contact-value { font-size:.95rem; color:var(--white-80); }
+  .contact-value a { color: var(--blue-glow); text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+
+  .contacts-social { margin-top: 40px; }
+  .social-title { font-size:.75rem; color:var(--white-40); letter-spacing:.1em; font-family:'Space Grotesk',sans-serif; text-transform:uppercase; margin-bottom:16px; }
+  .social-links { display:flex; gap:12px; }
+  .social-link {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size:1rem; text-decoration:none; color:var(--white-80);
+    transition: border-color .3s, color .3s, background .3s;
+  }
+  .social-link:hover { border-color: var(--blue-glow); color: var(--blue-glow); background: rgba(77,166,255,.08); }
+
+  /* Form */
+  .contact-form {
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(24px); border-radius: 24px;
+    padding: 44px 40px;
+  }
+  .form-title { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--white); margin-bottom:8px; }
+  .form-sub { font-size:.85rem; color:var(--white-40); margin-bottom:32px; line-height:1.6; }
+
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display:block; font-size:.75rem; letter-spacing:.08em; color:var(--white-40);
+    font-family:'Space Grotesk',sans-serif; text-transform:uppercase; margin-bottom:8px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; background: rgba(255,255,255,.05);
+    border: 1px solid var(--glass-border); border-radius: 12px;
+    padding: 14px 18px; color: var(--white);
+    font-family:'DM Sans',sans-serif; font-size:.9rem;
+    transition: border-color .3s, box-shadow .3s;
+    outline: none; appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--blue-glow);
+    box-shadow: 0 0 0 3px rgba(77,166,255,.12);
+  }
+  .form-group textarea { height: 110px; resize: none; }
+  .form-group select option { background: var(--blue-mid); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--glass-border);
+    padding: 40px 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1rem; letter-spacing:.08em; color:var(--white-40); }
+  .footer-copy { font-size:.8rem; color:var(--white-40); }
+  .footer-links { display:flex; gap:24px; }
+  .footer-links a { font-size:.8rem; color:var(--white-40); text-decoration:none; transition:color .2s; }
+  .footer-links a:hover { color:var(--white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { height: 300px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .contacts-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .seminar-item { grid-template-columns: 80px 1fr; grid-template-rows: auto auto; }
+    .seminar-meta { grid-column: 2; }
+    .seminar-banner { flex-direction: column; padding: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor">
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">Z</div>
+    ZEMITS BALTIC
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Par mums</a></li>
+    <li><a href="#services">Pakalpojumi</a></li>
+    <li><a href="#seminars">Semināri</a></li>
+    <li><a href="#contacts" class="nav-cta">Pierakstīties</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      ZEMITS BALTIC — KOSMETIK EXPERTE
+    </div>
+    <h1 class="hero-title">
+      Āda, kuru<br>
+      <em>vēlaties</em><br>
+      <strong>parādīt.</strong>
+    </h1>
+    <p class="hero-sub">
+      Mūsdienīgi kosmetoloģijas aparāti no ASV, profesionāla kosmētika un eksperta zināšanas — viss, lai jūsu klienti starojot.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Uzzināt vairāk →</a>
+      <a href="#contacts" class="btn-ghost">Konsultācija</a>
+    </div>
+  </div>
+
+  <!-- floating card -->
+  <div class="hero-card">
+    <div class="hero-card-stat">
+      <div class="stat-number">10<span>+</span></div>
+      <div class="stat-label">GADI NOZARĒ</div>
+    </div>
+    <div class="hero-card-divider"></div>
+    <div class="hero-card-stat">
+      <div class="stat-number">500<span>+</span></div>
+      <div class="stat-label">APMĀCĪTI SPECIĀLISTI</div>
+    </div>
+    <div class="hero-card-divider"></div>
+    <div class="hero-card-stat">
+      <div class="stat-number">3</div>
+      <div class="stat-label">BALTIJAS VALSTIS</div>
+    </div>
+    <div class="hero-card-divider"></div>
+    <div class="hero-card-tag">🇱🇻 🇪🇪 🇱🇹 Baltija</div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label reveal">Par mums</div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Ekspertīze, ko<br><em>jūtat uz ādas</em>
+  </h2>
+
+  <div class="about-grid">
+    <div class="about-visual reveal reveal-delay-2">
+      <div class="about-img-placeholder">
+        <div class="about-img-label">
+          <div class="img-icon">🎯</div>
+          <div>Foto vieta</div>
+        </div>
+      </div>
+      <div class="about-float-card">
+        <div class="big">ASV</div>
+        <div class="label">Aparātu izcelsme</div>
+      </div>
+      <div class="about-float-card-2">
+        <div class="tag-text">🏆 Baltic Beauty 2025</div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <p class="section-sub reveal reveal-delay-1">
+        Zemits Baltic ir Zemits zīmola pārstāvis Latvijā, Igaunijā un Lietuvā — mūsdienīgu kosmetoloģijas aparātu un profesionālas kosmētikas nodrošinātājs speciālistiem, kuri rūpējas par rezultātu.
+      </p>
+      <p class="section-sub reveal reveal-delay-2" style="margin-top:20px;">
+        Mēs piedāvājam ne tikai aprīkojumu, bet arī zināšanas: apmācības, seminātus un nepārtrauktu atbalstu, lai jūs vienmēr būtu soli priekšā.
+      </p>
+
+      <div class="team-cards" style="margin-top:40px;">
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-avatar">D</div>
+          <div class="team-info">
+            <div class="team-name">Dace</div>
+            <div class="team-role">Zemits Baltic vadītāja · Skaistumkopšanas speciāliste · Zemits apmācību trenere</div>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-3">
+          <div class="team-avatar">I</div>
+          <div class="team-info">
+            <div class="team-name">Iveta</div>
+            <div class="team-role">Zemits Baltic menedžere · Kosmetoloģe · Zemits apmācību trenere</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label reveal">Pakalpojumi</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Viss, kas<br><em>nepieciešams</em>
+      </h2>
+    </div>
+    <a href="#contacts" class="btn-primary reveal reveal-delay-2">Saņemt piedāvājumu →</a>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">⚡</div>
+      <div class="service-name">Aparātmetodes</div>
+      <div class="service-desc">Jaunās paaudzes estētika — maigi, efektīvi, uz rezultātu vērsti procedūru protokoli moderniem aparātiem.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card featured reveal reveal-delay-1">
+      <div class="service-icon">✨</div>
+      <div class="service-name">Enzīmu terapija</div>
+      <div class="service-desc">Enzīmu terapija kombinācijā ar aparātprocedūrām — vesela un līdzsvarota āda bez agresīvām metodēm.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">〰️</div>
+      <div class="service-name">Mikrostrāvu efekts</div>
+      <div class="service-desc">Dzīva, viegla un līdzsvarota seja — mikrostrāvas kā procedūras pamats, nevis papildinājums.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">💆</div>
+      <div class="service-name">Presoterapija</div>
+      <div class="service-desc">Ķermeņa labsajūtai un estētikai — limfas darbība, tonuss un pašsajūta uzlabojuma ceļā.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">📦</div>
+      <div class="service-name">Profesionāla kosmētika</div>
+      <div class="service-desc">Kosmētika speciāli aparātprocedūrām — augstas kvalitātes produkti, kas pastiprina procedūras rezultātu.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">🎓</div>
+      <div class="service-name">Apmācības & Atbalsts</div>
+      <div class="service-desc">Teorija un prakse — seminātri, kursi un pastāvīgs atbalsts speciālistiem visos izaugsmes posmos.</div>
+      <div class="service-arrow">→</div>
+    </div>
+  </div>
+
+  <div class="services-cta reveal">
+    <p style="color:var(--white-40); margin-bottom:20px; font-size:.9rem;">Nav skaidrības, kuri pakalpojumi piemēroti jums?</p>
+    <a href="#contacts" class="btn-primary">Jautāt ekspertam →</a>
+  </div>
+</section>
+
+<!-- SEMINARS -->
+<section id="seminars">
+  <div class="section-label reveal">Semināri 2026</div>
+  <h2 class="section-title reveal reveal-delay-1">Tuvākie <em>pasākumi</em></h2>
+  <p class="section-sub reveal reveal-delay-2">
+    Vada <strong>Iveta Bartkeviča</strong> — praktizējoša skaistumkopšanas speciāliste kosmetoloģijā, ZEMITS pārstāve Latvijā.
+  </p>
+
+  <div class="seminars-inner">
+    <div class="seminars-list">
+      <div class="seminar-item reveal">
+        <div class="seminar-date-block">
+          <div class="seminar-day">23</div>
+          <div class="seminar-month">Feb</div>
+          <div class="seminar-time">11:00</div>
+        </div>
+        <div class="seminar-info">
+          <div class="seminar-title">«Aparātmetodes + enzīmu terapija = vesela āda»</div>
+          <div class="seminar-desc">Jaunās paaudzes estētika, apvienojot maigās aparātmetodes ar enzīmu terapiju. Teorija + prakse.</div>
+        </div>
+        <div class="seminar-meta">
+          <div class="seminar-price-label">Dalības maksa</div>
+          <div class="seminar-price">30 €</div>
+          <br>
+          <a href="#contacts" class="btn-seminar">Pieteikties</a>
+        </div>
+      </div>
+
+      <div class="seminar-item reveal reveal-delay-1">
+        <div class="seminar-date-block">
+          <div class="seminar-day">23</div>
+          <div class="seminar-month">Mar</div>
+          <div class="seminar-time">11:00</div>
+        </div>
+        <div class="seminar-info">
+          <div class="seminar-title">«Mikrostrāvu efekts un kombinācija ar citām procedūrām»</div>
+          <div class="seminar-desc">Kā no mikrostrāvām izveidot procedūras pamatu — seja dzīva, viegla un līdzsvarota.</div>
+        </div>
+        <div class="seminar-meta">
+          <div class="seminar-price-label">Dalības maksa</div>
+          <div class="seminar-price">30 €</div>
+          <br>
+          <a href="#contacts" class="btn-seminar">Pieteikties</a>
+        </div>
+      </div>
+
+      <div class="seminar-item reveal reveal-delay-2">
+        <div class="seminar-date-block">
+          <div class="seminar-day">27</div>
+          <div class="seminar-month">Apr</div>
+          <div class="seminar-time">11:00</div>
+        </div>
+        <div class="seminar-info">
+          <div class="seminar-title">«Presoterapija ķermeņa labsajūtai un estētikai»</div>
+          <div class="seminar-desc">Limfas darbība, ķermeņa tonuss un pašsajūta — seminārs par presoterapiju un tās iedarbību.</div>
+        </div>
+        <div class="seminar-meta">
+          <div class="seminar-price-label">Dalības maksa</div>
+          <div class="seminar-price">30 €</div>
+          <br>
+          <a href="#contacts" class="btn-seminar">Pieteikties</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="seminar-banner reveal">
+      <div class="seminar-banner-text">
+        <div class="seminar-banner-title">Sper nākamo soli savā<br><em>profesionālajā izaugsmē</em></div>
+        <div class="seminar-banner-sub">Vietu skaits ir ierobežots. Dalības maksa — 30 €,<br>ko var izmantot kosmētikas vai aprīkojuma iegādei.</div>
+      </div>
+      <div>
+        <a href="#contacts" class="btn-primary">Pieteikties semināram →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="section-label reveal">Kontakti</div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Sazināsimies<br><em>jau šodien</em>
+  </h2>
+
+  <div class="contacts-grid">
+    <div class="contacts-info">
+      <p class="section-sub reveal reveal-delay-1" style="margin-bottom:40px;">
+        Esam pieejami, lai atbildētu uz jūsu jautājumiem, sniegtu konsultāciju vai palīdzētu pierakstīties uz semināru.
+      </p>
+
+      <div class="contact-item reveal reveal-delay-1">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Telefons</div>
+          <div class="contact-value"><a href="tel:+37122015527">+371 22015527</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item reveal reveal-delay-2">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Adrese</div>
+          <div class="contact-value">Vienības gatve 192, Rīga, Latvija</div>
+        </div>
+      </div>
+
+      <div class="contact-item reveal reveal-delay-3">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-label">Sociālie tīkli</div>
+          <div class="contact-value"><a href="#">@zemits_skin_expert</a></div>
+        </div>
+      </div>
+
+      <div class="contacts-social reveal reveal-delay-3">
+        <div class="social-title">Sekot mums</div>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Instagram">IG</a>
+          <a href="#" class="social-link" title="Facebook">FB</a>
+          <a href="#" class="social-link" title="TikTok">TT</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal reveal-delay-2">
+      <div class="form-title">Sūtīt pieteikumu</div>
+      <div class="form-sub">Aizpildiet formu un mēs sazināsimies ar jums 24 stundu laikā.</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vārds</label>
+          <input type="text" placeholder="Jūsu vārds">
+        </div>
+        <div class="form-group">
+          <label>Uzvārds</label>
+          <input type="text" placeholder="Jūsu uzvārds">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-pasts vai telefons</label>
+        <input type="text" placeholder="info@example.com vai +371 …">
+      </div>
+
+      <div class="form-group">
+        <label>Jautājums / Pakalpojums</label>
+        <select>
+          <option value="" disabled selected>Izvēlieties tēmu…</option>
+          <option>Aparātmetodes un produkti</option>
+          <option>Semināra pieteikums</option>
+          <option>Apmācības un kursi</option>
+          <option>Cits jautājums</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Ziņojums</label>
+        <textarea placeholder="Jūsu jautājums vai komentārs…"></textarea>
+      </div>
+
+      <button class="btn-primary" style="width:100%; justify-content:center; border:none;" onclick="handleSubmit(this)">
+        Nosūtīt pieteikumu →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ZEMITS BALTIC</div>
+  <div class="footer-copy">© 2026 Zemits Baltic. Visas tiesības aizsargātas.</div>
+  <div class="footer-links">
+    <a href="#">Privātuma politika</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animCursor() {
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    rx += (mx - rx) * .12; ry += (my - ry) * .12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+  document.querySelectorAll('a, button, .service-card, .seminar-item, .team-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width='56px'; ring.style.height='56px'; ring.style.opacity='1'; });
+    el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='.5'; });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Form submit feedback
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Nosūtīts!';
+    btn.style.background = 'linear-gradient(135deg, #1a7a4a, #2aa96b)';
+    setTimeout(() => {
+      btn.textContent = 'Nosūtīt pieteikumu →';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // Parallax-like orbs on mousemove
+  const orbs = document.querySelectorAll('.hero-orb');
+  document.addEventListener('mousemove', e => {
+    const rx = (e.clientX / window.innerWidth - .5) * 20;
+    const ry = (e.clientY / window.innerHeight - .5) * 20;
+    orbs.forEach((o, i) => {
+      const d = (i + 1) * .4;
+      o.style.transform = `translate(${rx * d}px, ${ry * d}px)`;
+    });
+  });
+</script>
+</body>
+</html>
