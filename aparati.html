@@ -873,10 +873,6 @@ function openDeviceModal(name){
   if (priceTxt && d.from) priceTxt = `${t.ui_from} ${priceTxt}`;
   const priceHtml = priceTxt ? `<div class="dm-price">${priceTxt}</div>` : `<div class="dm-price req">${t.ui_onrequest}</div>`;
   const feats = d.feat[L].map(f => `<li>${f}</li>`).join('');
-  const hasTreats = info[L].treats && info[L].treats.length;
-  const treatsBlock = hasTreats
-    ? `<div class="dm-block"><div class="dm-h">${t.m_treats}</div><ul class="dm-list">${info[L].treats.map(f => `<li>${f}</li>`).join('')}</ul></div>`
-    : '';
   const sizesBlock = (info[L].sizes && info[L].sizes.length)
     ? `<div class="dm-included"><div class="dm-h">${t.m_sizes}</div><ul class="dm-list">${info[L].sizes.map(s => `<li>${s}</li>`).join('')}</ul></div>`
     : '';
@@ -893,9 +889,8 @@ function openDeviceModal(name){
       </div>
     </div>
     <p class="dm-desc">${info[L].desc}</p>
-    <div class="dm-grid${hasTreats ? '' : ' one'}">
+    <div class="dm-grid one">
       <div class="dm-block"><div class="dm-h">${t.m_tech}</div><ul class="dm-list">${feats}</ul></div>
-      ${treatsBlock}
     </div>
     ${sizesBlock}
     <div class="dm-included"><div class="dm-h">${t.m_included}</div><ul class="dm-list dm-inc">${inc}</ul></div>
