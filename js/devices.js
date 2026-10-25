@@ -42,11 +42,11 @@ const devices = [
       en:['Vacuum therapy','Anti-cellulite roller massage','RF lifting','LED therapy','Cavitation']
     }},
   { name:'Zemits Veraface Pro NG', price:5200, tag:'analysis', icon:'🔬',
-    type:{lv:'Ādas analizators', ru:'Анализатор кожи', en:'Skin analyzer'},
+    type:{lv:'Jaunākās paaudzes ādas analizators', ru:'Анализатор кожи нового поколения', en:'New-generation skin analyzer'},
     feat:{
-      lv:['Padziļināta ādas diagnostika pēc 12 parametriem','Poru, grumbu, pigmentācijas un mitruma vizualizācija','Personalizēti procedūru ieteikumi','Klientu uzskaite un vēsture','Pirms/pēc rezultātu demonstrēšana'],
-      ru:['Углублённая диагностика кожи по 12 параметрам','Визуализация пор, морщин, пигментации и увлажнённости','Персональные рекомендации по процедурам','Учёт и история клиентов','Демонстрация результатов до/после'],
-      en:['In-depth skin diagnostics across 12 parameters','Visualises pores, wrinkles, pigmentation and hydration','Personalised treatment recommendations','Client records and history','Before/after result demonstration']
+      lv:['Augstas izšķirtspējas 20 MP kamera ar 5 spektra režīmiem','8 vizuālās projekcijas, tostarp negatīvā un pozitīvā polarizācija','Padziļināta profilēšana pēc Baumana (Baumann) 16 ādas tipiem','VeraScope™ sistēma: ādas mitruma mērījumi 4 zonās','VeraScope™ uzgalis sejas ādas un galvas ādas mikrofotografēšanai','15,6 collu skārienekrāns, kas pielāgots ērtai konsultāciju vadīšanai'],
+      ru:['Камера высокого разрешения 20 Мп с 5 спектральными режимами','8 визуальных проекций, включая негативную и позитивную поляризацию','Глубокое профилирование по 16 типам кожи Бауманн','Система VeraScope™: замер гидробаланса в 4 зонах','Насадка VeraScope™ для микросъёмки кожи и кожи головы','Сенсорный дисплей 15,6″, оптимизированный под консультации'],
+      en:['20 MP high-resolution camera with 5 spectral modes','8 visual projections, incl. negative and positive polarisation','In-depth profiling by the 16 Baumann skin types','VeraScope™ system: 4-zone hydration measurement','VeraScope™ attachment for close-up skin and scalp imaging','15.6″ touch display optimised for consultations']
     }},
   { name:'Zemits Verstand HD Pro', price:4200, tag:'face', icon:'💎',
     type:{lv:'Daudzfunkcionāla sejas platforma', ru:'Многофункциональная платформа для лица', en:'Multifunctional facial platform'},
@@ -58,9 +58,9 @@ const devices = [
   { name:'Zemits Veraface', price:4200, tag:'analysis', icon:'🔬',
     type:{lv:'Ādas analizators', ru:'Анализатор кожи', en:'Skin analyzer'},
     feat:{
-      lv:['Padziļināta ādas diagnostika pēc 12 parametriem','Poru, grumbu, pigmentācijas un mitruma vizualizācija','Personalizēti procedūru ieteikumi','Klientu uzskaite un vēsture','Pirms/pēc rezultātu demonstrēšana'],
-      ru:['Углублённая диагностика кожи по 12 параметрам','Визуализация пор, морщин, пигментации и увлажнённости','Персональные рекомендации по процедурам','Учёт и история клиентов','Демонстрация результатов до/после'],
-      en:['In-depth skin diagnostics across 12 parameters','Visualises pores, wrinkles, pigmentation and hydration','Personalised treatment recommendations','Client records and history','Before/after result demonstration']
+      lv:['HD kamera ar 3 gaismas spektriem (RGB, UV, PL)','Ādas analīze pēc 12 parametriem','Ādas taukainuma un sausuma bāzes novērtējums','Iebūvēts mitruma līmeņa sensors','Personalizēti procedūru ieteikumi','Klientu datubāze, procedūru vēsture un «pirms/pēc» salīdzinājums'],
+      ru:['HD-камера с 3 спектрами света (RGB, UV, PL)','Анализ кожи по 12 параметрам','Базовая оценка жирности и сухости кожи','Встроенный датчик влажности','Персональные рекомендации по процедурам','Учёт клиентов, история и сравнение до/после'],
+      en:['HD camera with 3 light spectra (RGB, UV, PL)','Skin analysis across 12 parameters','Basic oiliness and dryness assessment','Built-in moisture sensor','Personalised treatment recommendations','Client records, history and before/after comparison']
     }},
   { name:'Zemits Friolift', price:3200, tag:'both', icon:'❄️',
     type:{lv:'Kontrastterapija ādas atjaunošanai sejai un ķermenim', ru:'Контрастная терапия для омоложения кожи лица и тела', en:'Contrast therapy for face and body skin rejuvenation'},
@@ -255,9 +255,17 @@ const deviceInfo = {
     en:{desc:'An innovative facial platform with 8 technologies and the patented HydroDiamond™ treatment. One device lets you build individual facial protocols to improve skin quality and address a range of skin concerns.',
         treats:['Signs of aging and skin laxity','Clogged pores and comedones','Dehydration and dull skin','Pigmentation and uneven tone']}
   },
+  'Zemits Veraface Pro NG': {
+    lv:{desc:'Jaunākās paaudzes ādas analizators, kas aprīkots ar 20 MP kameru un 5 spektra režīmiem. 8 vizuālās projekcijas, tostarp negatīvā un pozitīvā polarizācija, nodrošina visaptverošu ādas stāvokļa izvērtēšanu. Profilēšana pēc Baumana (Baumann) 16 ādas tipu sistēmas ļauj precīzi piemeklēt atbilstošākās salona procedūras un mājas kopšanas plānu. Integrētā VeraScope™ sistēma mēra mitruma līmeni 4 atsevišķās zonās, bet tās uzgalis sniedz iespēju veikt sejas un galvas ādas detalizētu mikrofotografēšanu. Lielais 15,6 collu skārienekrāns padara konsultācijas gaitu klientam skaidru, uzskatāmu un uzticamu.',
+        treats:['Padziļināta ādas diagnostika','Ādas tipa noteikšana pēc Baumana (Baumann) klasifikācijas','Galvas ādas stāvokļa izvērtēšana','Individuālu procedūru un mājas kopšanas līdzekļu piemeklēšana']},
+    ru:{desc:'Анализатор кожи нового поколения с камерой 20 Мп и 5 спектральными режимами. 8 визуальных проекций, включая негативную и позитивную поляризацию, позволяют детально оценить состояние кожи, а профилирование по 16 типам кожи Бауманн помогает точнее подобрать процедуры и домашний уход. Встроенная система VeraScope™ измеряет гидробаланс в 4 зонах, а её насадка позволяет делать микросъёмку кожи и кожи головы. Большой сенсорный дисплей 15,6″ делает консультацию наглядной для клиента.',
+        treats:['Углублённая диагностика кожи','Определение типа кожи по классификации Бауманн','Оценка состояния кожи головы','Подбор процедур и домашнего ухода']},
+    en:{desc:'A new-generation skin analyser with a 20 MP camera and 5 spectral modes. Eight visual projections, including negative and positive polarisation, give a detailed view of skin condition, while profiling by the 16 Baumann skin types helps you choose treatments and homecare more precisely. The integrated VeraScope™ system measures hydration in 4 zones, and its attachment captures close-up images of the skin and scalp. The large 15.6″ touch display makes every consultation clear and visual for the client.',
+        treats:['In-depth skin diagnostics','Baumann skin type identification','Scalp assessment','Choosing treatments and homecare']}
+  },
   'Zemits Veraface': {
-    lv:{desc:'Profesionāls ādas analizators, kas vizualizē ādas stāvokli — poras, grumbas, pigmentāciju, mitrumu u.c. Sistēma veic detalizētu ādas analīzi pēc 12 parametriem un automātiski sagatavo personalizētus procedūru ieteikumus, kas pielāgoti tieši jūsu piedāvāto pakalpojumu klāstam.',
-        treats:['Padziļināta ādas diagnostika','Procedūru plānošana pēc datiem','Klientu uzskaite un vēsture','Pirms/pēc rezultātu demonstrēšana']},
+    lv:{desc:'Profesionāls ādas analizators, kas vizualizē ādas stāvokli — poras, grumbas, pigmentāciju, mitruma līmeni un citus rādītājus. Sistēma veic padziļinātu ādas analīzi pēc 12 parametriem un automātiski ģenerē personalizētus procedūru ieteikumus, kas pielāgoti tieši jūsu klīnikas vai salona piedāvāto pakalpojumu klāstam.',
+        treats:['Padziļināta ādas stāvokļa diagnostika','Datu balstīta procedūru plānošana','Klientu uzskaite un apmeklējumu vēsture','Uzskatāma rezultātu demonstrēšana «pirms un pēc»']},
     ru:{desc:'Профессиональный анализатор кожи, визуализирующий её состояние — поры, морщины, пигментацию, увлажнённость и др. Система проводит детальный анализ кожи по 12 параметрам и автоматически формирует персональные рекомендации по процедурам, адаптированные именно под ваш перечень услуг.',
         treats:['Углублённая диагностика кожи','Планирование процедур по данным','Учёт и история клиентов','Демонстрация результатов до/после']},
     en:{desc:'A professional skin analyser that visualises skin condition — pores, wrinkles, pigmentation, hydration and more. The system performs a detailed skin analysis across 12 parameters and automatically prepares personalised treatment recommendations tailored to the exact range of services you offer.',
@@ -404,8 +412,6 @@ const deviceInfo = {
   }
 };
 
-/* Pro NG: same description as the base Veraface until the client sends its own text */
-deviceInfo['Zemits Veraface Pro NG'] = deviceInfo['Zemits Veraface'];
 
 const deviceImg = {
   'Zemits Quidion NG':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/1.png',
