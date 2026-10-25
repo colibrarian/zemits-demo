@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zemits Skin Expert — Aparātu klāsts</title>
+<link rel="canonical" href="https://zemits-latvija.lv/aparati.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zemits-latvija.lv/aparati.html">
+<meta property="og:title" content="Zemits Skin Expert — Aparātu klāsts">
 <meta name="description" content="Zemits iekārtu katalogs: profesionālas estētiskās kosmetoloģijas iekārtas sejai un ķermenim ar cenām, apmācībām, 24 mēnešu garantiju un servisu Latvijā.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a4a8a'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-style='italic' fill='%23ffffff' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,6 +104,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 16px 5v
 .map-legend .t { font-family: 'Playfair Display', serif; font-size: clamp(1.15rem, 1.9vw, 1.7rem); line-height: 1.15; margin-top: 10px; text-shadow: 0 2px 14px rgba(5,15,40,.55); }
 .map-legend .t em, .legend-m .t em { color: #7ecbff; font-style: italic; }
 .map-count { display: inline-block; min-width: .62em; font-variant-numeric: tabular-nums; text-align: center; }
+.map-plus { opacity: 0; transition: opacity .4s ease; }
+.map-plus.on { opacity: 1; }
 .legend-m { display: none; }
 .legend-m .map-logo { margin: 0; height: 20px; }
 .legend-m .t { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 8px; }
@@ -357,7 +363,7 @@ nav .burger span { background: var(--text); }
 
   <div class="legend-m">
     <img class="map-logo" src="https://ik.imagekit.io/xwsgpirygo/Zemits/Zemits_Logo_s_b.svg" alt="Zemits" onerror="this.outerHTML='<div class=&quot;map-logo-txt&quot;>ZEMITS</div>'">
-    <div class="t"><span data-i18n="map_t1">Profesionāļu izvēle</span> <em><span class="map-count">8</span> <span data-i18n="map_t2">valstīs</span></em></div>
+    <div class="t"><span data-i18n="map_t1">Profesionāļu izvēle</span> <em><span class="map-count">8</span><span class="map-plus on">+</span> <span data-i18n="map_t2">valstīs</span></em></div>
     <div class="map-nav" role="group" aria-label="Karte">
       <button type="button" id="mapNavNA" aria-pressed="false" data-i18n="map_na">Ziemeļamerika</button>
       <button type="button" id="mapNavEU" aria-pressed="true" data-i18n="map_eu">Eiropa</button>
@@ -385,7 +391,7 @@ nav .burger span { background: var(--text); }
         <div class="map-pins" id="mapPins"></div>
         <div class="map-legend" id="mapLegend">
           <img class="map-logo" src="https://ik.imagekit.io/xwsgpirygo/Zemits/Zemits_Logo_s_b.svg" alt="Zemits" onerror="this.outerHTML='<div class=&quot;map-logo-txt&quot;>ZEMITS</div>'">
-          <div class="t"><span data-i18n="map_t1">Profesionāļu izvēle</span> <em><span class="map-count">8</span> <span data-i18n="map_t2">valstīs</span></em></div>
+          <div class="t"><span data-i18n="map_t1">Profesionāļu izvēle</span> <em><span class="map-count">8</span><span class="map-plus on">+</span> <span data-i18n="map_t2">valstīs</span></em></div>
         </div>
       </div>
     </div>
@@ -395,8 +401,8 @@ nav .burger span { background: var(--text); }
 <!-- STATS BAR -->
 <div class="stats-wrap">
   <ul class="stats-bar">
-    <li><div class="n" id="deviceCount">—</div><div class="l" data-i18n="meta_devices">Iekārtas klāstā</div></li>
-    <li><div class="n">8</div><div class="l" data-i18n="stat_countries">Valstis</div></li>
+    <li><div class="n"><span id="deviceCount">—</span>+</div><div class="l" data-i18n="meta_devices">Iekārtas klāstā</div></li>
+    <li><div class="n">8+</div><div class="l" data-i18n="stat_countries">Valstis</div></li>
     <li><div class="n">15+</div><div class="l" data-i18n="stat_years">Gadi inovāciju</div></li>
     <li><div class="n">24</div><div class="l" data-i18n="meta_warranty">Mēneši garantija</div></li>
   </ul>
@@ -606,6 +612,13 @@ const devices = [
       ru:['Вакуумная терапия','Антицеллюлитный роликовый массаж','RF-лифтинг','LED-терапия','Кавитация'],
       en:['Vacuum therapy','Anti-cellulite roller massage','RF lifting','LED therapy','Cavitation']
     }},
+  { name:'Zemits Veraface Pro NG', price:5200, tag:'analysis', icon:'🔬',
+    type:{lv:'Ādas analizators', ru:'Анализатор кожи', en:'Skin analyzer'},
+    feat:{
+      lv:['Padziļināta ādas diagnostika'],
+      ru:['Углублённая диагностика кожи'],
+      en:['In-depth skin diagnostics']
+    }},
   { name:'Zemits Verstand HD Pro', price:4200, tag:'face', icon:'💎',
     type:{lv:'Daudzfunkcionāla sejas platforma', ru:'Многофункциональная платформа для лица', en:'Multifunctional facial platform'},
     feat:{
@@ -690,7 +703,8 @@ const devices = [
       ru:['Гидродермабразия','Кислородная терапия','Криотерапия'],
       en:['Hydrodermabrasion','Oxygen therapy','Cold therapy']
     }},
-  { name:'Zemits Demeter Pro', price:2200, tag:'body', icon:'🦵',
+  { name:'Zemits Demeter Pro', price:null,   // price not known yet → "Cena pēc pieprasījuma"
+    tag:'body', icon:'🦵',
     type:{lv:'Presoterapija — limfodrenāžas iekārta', ru:'Прессотерапия — аппарат лимфодренажа', en:'Pressotherapy — lymphatic drainage'},
     feat:{
       lv:['Profesionāla limfodrenāžas ierīce ar 44 kamerām','Gaisa spiediena intensitāti var regulēt četros līmeņos (120 līdz 240 mm Hg)','Kostīms ir izgatavots no izturīga materiāla, un tam ir universāls izmērs','Maksimālais klienta svars līdz 200 kg','Apstrādes zonas — kājas, vēders, sēžamvieta un rokas'],
@@ -961,6 +975,9 @@ const deviceInfo = {
   }
 };
 
+/* Pro NG: same description as the base Veraface until the client sends its own text */
+deviceInfo['Zemits Veraface Pro NG'] = deviceInfo['Zemits Veraface'];
+
 const deviceImg = {
   'Zemits Quidion NG':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/1.png',
   'Zemits OgmaLaze':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/2.png',
@@ -968,7 +985,8 @@ const deviceImg = {
   'Zemits Endoluxx Pro':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/4.png',
   'Zemits Bionexis Lite':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/5.png',
   'Zemits Verstand HD Pro':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/6.png',
-  'Zemits Veraface':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/Updated/3.jpg',
+  'Zemits Veraface Pro NG':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/Updated/3.jpg',
+  'Zemits Veraface':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/7.png',
   'Zemits Friolift':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/8.png',
   'Zemits Verstand HD':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/Updated/5.jpg',
   'Zemits OxiVelour Pro':'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/Updated/1.jpg',
@@ -1184,6 +1202,7 @@ const mapInner = document.getElementById('heroMapInner'), mapFrame = document.ge
 const mapPins = document.getElementById('mapPins'), mapLeaders = document.getElementById('mapLeaders');
 const mapCities = [...MAP_CITIES].sort((a, b) => a.x - b.x);
 const mapSetCount = v => document.querySelectorAll('.map-count').forEach(e => { e.textContent = v; });
+const mapSetPlus = on => document.querySelectorAll('.map-plus').forEach(e => e.classList.toggle('on', on));   // "8+": the plus appears once the counter lands
 let mapLabels = [], mapTimers = [];
 const mapName = n => (MAP_NAMES[currentLang] && MAP_NAMES[currentLang][n]) || n;
 
@@ -1252,9 +1271,10 @@ function mapPlay(){
   mapHero.classList.remove('play', 'idle');
   const hubDelays = mapBuild(); mapLayout(); mapFit();
   void mapHero.offsetWidth;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mapSetCount('8'); mapHero.classList.add('idle'); return; }
-  mapHero.classList.add('play'); mapSetCount('0');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mapSetCount('8'); mapSetPlus(true); mapHero.classList.add('idle'); return; }
+  mapHero.classList.add('play'); mapSetCount('0'); mapSetPlus(false);
   hubDelays.forEach((d, i) => mapTimers.push(setTimeout(() => mapSetCount(String(i + 1)), d * 1000 + 120)));
+  mapTimers.push(setTimeout(() => mapSetPlus(true), Math.max(...hubDelays) * 1000 + 300));
   mapTimers.push(setTimeout(() => mapHero.classList.add('idle'), Math.max(...hubDelays) * 1000 + 1200));
 }
 function mapRelabel(){   // language switch: new names, same animation state
