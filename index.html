@@ -12,6 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a4a8a'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-style='italic' fill='%23ffffff' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/device-modal.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -154,7 +155,7 @@ section { padding: 100px 5vw; }
 .btn-blue { background: var(--blue); color: var(--white); padding: 13px 30px; border-radius: 100px; font-weight: 500; font-size: .875rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: box-shadow .3s, transform .2s, background .3s; }
 .btn-blue:hover { background: var(--blue-mid); box-shadow: 0 8px 24px rgba(26,74,138,.3); transform: translateY(-2px); }
 .equipment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.equipment-card { background: var(--off-white); border: 1.5px solid var(--mid); border-radius: var(--radius-lg); overflow: hidden; transition: border-color .3s, box-shadow .3s, transform .3s; }
+.equipment-card { background: var(--off-white); border: 1.5px solid var(--mid); border-radius: var(--radius-lg); overflow: hidden; transition: border-color .3s, box-shadow .3s, transform .3s; display: flex; flex-direction: column; }
 .equipment-card:hover { border-color: var(--blue-mid); box-shadow: var(--shadow-md); transform: translateY(-4px); }
 .eq-img-placeholder { aspect-ratio: 1 / 1; background: var(--blue-ultra); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 .eq-img-placeholder::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 100%, rgba(45,107,191,.12), transparent 60%); }
@@ -163,7 +164,11 @@ section { padding: 100px 5vw; }
 .eq-photo { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; }
 .eq-tag { position: absolute; top: 14px; left: 14px; background: var(--blue); color: var(--white); font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; z-index: 2; }
 .eq-tag.teal { background: var(--teal); } .eq-tag.laser { background: #6b1a1a; } .eq-tag.micro { background: #8b1060; } .eq-tag.both { background: linear-gradient(120deg, var(--teal), var(--blue-mid)); }
-.eq-body { padding: 22px 24px; }
+.eq-body { padding: 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.eq-body .eq-features { margin-bottom: 18px; }
+.eq-footer { margin-top: auto; padding-top: 18px; border-top: 1.5px solid var(--mid); display: flex; justify-content: flex-end; }
+.eq-learn { background: var(--blue); color: var(--white); border: 1.5px solid var(--blue); padding: 9px 18px; border-radius: 100px; font-family: 'Outfit', sans-serif; font-size: .78rem; font-weight: 500; cursor: pointer; transition: background .3s, border-color .3s; }
+.eq-learn:hover { background: var(--blue-mid); border-color: var(--blue-mid); }
 .eq-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 5px; }
 .eq-type { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-mid); font-weight: 500; margin-bottom: 12px; }
 .eq-features { list-style: none; }
@@ -947,6 +952,7 @@ nav.scrolled .burger span { background: var(--text); }
   </div>
 </footer>
 
+<script src="js/devices.js"></script>
 <script>
 /* ─────────────────────────────────────────
    TRANSLATIONS
@@ -1024,7 +1030,7 @@ const i18n = {
     form_opt1:'Iekārtu iegāde', form_opt2:'Semināra pieteikums', form_opt3:'Konsultācija par iekārtu izvēli', form_opt4:'Apmācības un kursi', form_opt5:'Cits jautājums',
     form_msg:'Ziņojums', form_msg_ph:'Jūsu jautājums vai komentārs…', form_send:'Atvērt WhatsApp',
     footer_privacy:'Privātuma politika',
-    wa_greeting:'Sveiki, Zemits Skin Expert!', wa_topic:'Tēma', wa_thanks:'Paldies!'
+    wa_greeting:'Sveiki, Zemits Skin Expert!', wa_topic:'Tēma', wa_device:'Interesē aparāts', wa_thanks:'Paldies!'
   },
   ru: {
     /* training */
@@ -1098,7 +1104,7 @@ const i18n = {
     form_opt1:'Покупка оборудования', form_opt2:'Запись на семинар', form_opt3:'Консультация по выбору аппарата', form_opt4:'Обучение и курсы', form_opt5:'Другой вопрос',
     form_msg:'Сообщение', form_msg_ph:'Ваш вопрос или комментарий…', form_send:'Открыть WhatsApp',
     footer_privacy:'Политика конфиденциальности',
-    wa_greeting:'Здравствуйте, Zemits Skin Expert!', wa_topic:'Тема', wa_thanks:'Спасибо!'
+    wa_greeting:'Здравствуйте, Zemits Skin Expert!', wa_topic:'Тема', wa_device:'Интересующий аппарат', wa_thanks:'Спасибо!'
   },
   en: {
     /* training */
@@ -1172,9 +1178,11 @@ const i18n = {
     form_opt1:'Equipment purchase', form_opt2:'Seminar registration', form_opt3:'Device selection consultation', form_opt4:'Training & courses', form_opt5:'Other enquiry',
     form_msg:'Message', form_msg_ph:'Your question or comment…', form_send:'Open WhatsApp',
     footer_privacy:'Privacy Policy',
-    wa_greeting:'Hello, Zemits Skin Expert!', wa_topic:'Topic', wa_thanks:'Thank you!'
+    wa_greeting:'Hello, Zemits Skin Expert!', wa_topic:'Topic', wa_device:'Device of interest', wa_thanks:'Thank you!'
   }
 };
+mergeDeviceUi(i18n);
+
 
 let currentLang = 'lv';
 
@@ -1242,6 +1250,13 @@ function sendTraining(){
   const text = `${t.wa_greeting}\n\n${t.tr_wa}${fmt}.\n\n${t.wa_thanks}`;
   window.open(`https://wa.me/37126767517?text=${encodeURIComponent(text)}`, '_blank');
 }
+/* "Request price" / "Contact us" in the device popup */
+function requestDevice(name){
+  currentDevice = name;
+  pickTopic('Iekārtu iegāde');
+  document.getElementById('contacts').scrollIntoView({ behavior:'smooth' });
+  setTimeout(() => { const ta = document.getElementById('waMessage'); if (ta) { ta.focus(); const n = ta.value.length; ta.setSelectionRange(n, n); } }, 600);
+}
 function pickTopic(v){ const sel = document.getElementById('waSubject'); if(sel){ sel.value = v; updateTopicPreview(); } }
 
 /* ── REVEAL ── */
@@ -1290,7 +1305,7 @@ function sendWhatsApp(){
 }
 
 /* Live preview: selected topic appears at the top of the message field */
-let waHeader = '';
+let waHeader = '', currentDevice = '';
 function updateTopicPreview(){
   const sel = document.getElementById('waSubject');
   const ta = document.getElementById('waMessage');
@@ -1299,27 +1314,42 @@ function updateTopicPreview(){
   const topicText = (sel.selectedIndex >= 0 && sel.value) ? sel.options[sel.selectedIndex].text : '';
   let body = ta.value;
   if(waHeader && body.startsWith(waHeader)) body = body.slice(waHeader.length);
-  const newHeader = topicText ? `${t.wa_topic}: ${topicText}\n\n` : '';
+  const lines = [];
+  if (topicText) lines.push(`${t.wa_topic}: ${topicText}`);
+  if (currentDevice) lines.push(`${t.wa_device}: ${currentDevice}`);
+  const newHeader = lines.length ? lines.join('\n') + '\n\n' : '';
   ta.value = newHeader + body;
   waHeader = newHeader;
 }
 
-/* ── EQUIPMENT TEASER: device photos + click-through to full catalog ── */
+/* ── EQUIPMENT TEASER: photos and the detail popup come from js/devices.js, matched by card name ── */
 (function(){
-  const imgIds = ['12','5','18','6','14','8','2','3','4']; // Abigon, Bionexis, Leger, Verstand HD Pro, Eau Sante, FrioLift, OgmaLaze, Skyfrax, Endoluxx
-  document.querySelectorAll('#equipment .equipment-card').forEach((card, i) => {
+  document.querySelectorAll('#equipment .equipment-card').forEach(card => {
+    const name = card.querySelector('.eq-name').textContent.trim();
+    if (!devices.some(d => d.name === name)) return;
     const ph = card.querySelector('.eq-img-placeholder');
-    if (ph && imgIds[i]) {
+    const src = deviceImg[name];
+    if (ph && src) {
       const icon = ph.querySelector('.eq-icon');
       if (icon) icon.classList.add('eq-icon-fallback');
       const img = document.createElement('img');
       img.className = 'eq-photo';
       img.loading = 'lazy';
-      img.alt = '';
-      img.src = 'https://ik.imagekit.io/xwsgpirygo/Zemits/aparati/' + imgIds[i] + '.png?tr=w-800';
-      img.onerror = function(){ this.style.display = 'none'; };
+      img.alt = name;
+      img.src = src;
+      img.onerror = function(){ photoFallback(this); };
       ph.appendChild(img);
     }
+    const foot = document.createElement('div');
+    foot.className = 'eq-footer';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'eq-learn';
+    btn.setAttribute('data-i18n', 'ui_learn');
+    btn.textContent = i18n[currentLang].ui_learn;
+    btn.addEventListener('click', () => openDeviceModal(name));
+    foot.appendChild(btn);
+    card.querySelector('.eq-body').appendChild(foot);
   });
 })();
 let savedLang = 'lv'; try { savedLang = localStorage.getItem('zemitsLang') || 'lv'; } catch(e) {}
