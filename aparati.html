@@ -237,7 +237,8 @@ nav .burger span { background: var(--text); }
 .mobile-menu a { padding: 15px 4px; border-bottom: 1px solid var(--light); color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 400; }
 .mobile-menu a.m-active { color: var(--blue); font-weight: 500; }
 .mobile-menu a.m-cta { margin-top: 18px; border: none; background: var(--blue); color: var(--white); text-align: center; border-radius: 100px; font-weight: 500; }
-@media (max-width: 768px) { .burger { display: flex; } }
+/* the burger takes over as soon as the desktop links stop fitting on one line */
+@media (max-width: 860px) { .burger { display: flex; } .nav-links { display: none; } }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -302,6 +303,7 @@ nav .burger span { background: var(--text); }
     <ul class="nav-links">
       <li><a href="index.html" data-i18n="nav_home">Sākumlapa</a></li>
       <li><a href="aparati.html" class="active" data-i18n="nav_equipment">Iekārtas</a></li>
+      <li><a href="index.html#faq" data-i18n="nav_faq">Jautājumi</a></li>
       <li><a href="#contacts" class="nav-cta" data-i18n="nav_contact">Sazināties</a></li>
     </ul>
     <div class="lang-switcher">
@@ -317,6 +319,7 @@ nav .burger span { background: var(--text); }
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" data-i18n="nav_home">Sākumlapa</a>
   <a href="aparati.html" class="m-active" onclick="toggleMenu(false)" data-i18n="nav_equipment">Iekārtas</a>
+  <a href="index.html#faq" data-i18n="nav_faq">Jautājumi</a>
   <a href="#contacts" class="m-cta" onclick="toggleMenu(false)" data-i18n="nav_contact">Sazināties</a>
 </div>
 
@@ -455,7 +458,7 @@ const i18n = {
     privacy_title:'Privātuma politika', privacy_close:'Aizvērt', banner_ok:'Sapratu',
     banner_text:'Mēs neizmantojam trešo pušu analītiku un izsekošanas sīkdatnes — jūsu pārlūkā tiek saglabāti tikai vietnes iestatījumi (piem., valoda). <a href="#" onclick="openPrivacy();return false;">Privātuma politika</a>',
     privacy_body:'Šī tīmekļa vietne izmanto tikai tehniski nepieciešamās funkcijas saziņai vietnē WhatsApp. Mēs <strong>neizmantojam</strong> trešo pušu analītiku un nenododam jūsu datus trešajām personām.<br><br>Iesniedzot pieteikumu, jūs piekrītat, ka jūsu kontaktinformācija tiks izmantota tikai saziņai ar «Zemits Skin Expert» speciālistiem.',
-    nav_home:'Sākumlapa', nav_equipment:'Iekārtas', nav_contact:'Sazināties',
+    nav_home:'Sākumlapa', nav_faq:'Jautājumi', nav_equipment:'Iekārtas', nav_contact:'Sazināties',
     cat_eyebrow:'Aparātu katalogs', cat_title:'iekārtu klāsts',
     cat_sub:'Profesionālas estētiskās kosmetoloģijas iekārtas sejas un ķermeņa procedūrām — ar apmācībām, garantiju un tehnisko atbalstu.',
     meta_devices:'Iekārtas klāstā', meta_warranty:'Mēneši garantija',
@@ -481,7 +484,7 @@ const i18n = {
     privacy_title:'Политика конфиденциальности', privacy_close:'Закрыть', banner_ok:'Понятно',
     banner_text:'Мы не используем стороннюю аналитику и отслеживающие cookie — в вашем браузере сохраняются только настройки сайта (например, язык). <a href="#" onclick="openPrivacy();return false;">Политика конфиденциальности</a>',
     privacy_body:'Этот сайт использует только технически необходимые функции для связи через WhatsApp. Мы <strong>не используем</strong> сторонние системы аналитики и не передаём ваши данные третьим лицам.<br><br>Отправляя заявку, вы соглашаетесь на использование ваших контактных данных исключительно для связи со специалистами Zemits Skin Expert.',
-    nav_home:'Главная', nav_equipment:'Аппараты', nav_contact:'Связаться',
+    nav_home:'Главная', nav_faq:'Вопросы', nav_equipment:'Аппараты', nav_contact:'Связаться',
     cat_eyebrow:'Каталог оборудования', cat_title:'ассортимент аппаратов',
     cat_sub:'Профессиональное оборудование для эстетической косметологии — для процедур лица и тела, с обучением, гарантией и технической поддержкой.',
     meta_devices:'Аппаратов в каталоге', meta_warranty:'Месяца гарантии',
@@ -505,7 +508,7 @@ const i18n = {
     privacy_title:'Privacy Policy', privacy_close:'Close', banner_ok:'Got it',
     banner_text:'We use no third-party analytics or tracking cookies — your browser only stores site settings (such as language). <a href="#" onclick="openPrivacy();return false;">Privacy Policy</a>',
     privacy_body:'This website uses only technically necessary functions for communication via WhatsApp. We do <strong>not use</strong> third-party analytics and do not share your data with third parties.<br><br>By submitting a request, you agree that your contact details will be used solely for communication with Zemits Skin Expert specialists.',
-    nav_home:'Home', nav_equipment:'Devices', nav_contact:'Contact us',
+    nav_home:'Home', nav_faq:'FAQ', nav_equipment:'Devices', nav_contact:'Contact us',
     cat_eyebrow:'Equipment catalogue', cat_title:'device range',
     cat_sub:'Professional aesthetic cosmetology equipment for face and body treatments — with training, warranty and technical support.',
     meta_devices:'Devices in range', meta_warranty:'Months warranty',
