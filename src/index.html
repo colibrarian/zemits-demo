@@ -454,7 +454,7 @@ nav.scrolled .burger span { background: var(--text); }
 </div>
 
 <!-- PRIVACY INFO BANNER -->
-<div class="privacy-banner hidden" id="privacyBanner" role="region" aria-label="Privacy">
+<div class="privacy-banner hidden" id="privacyBanner" role="region" data-i18n-aria="aria_privacy" aria-label="Privātums">
   <div class="pb-text" data-i18n="banner_text"></div>
   <button class="pb-btn" onclick="ackBanner()" data-i18n="banner_ok">Sapratu</button>
 </div>
@@ -479,7 +479,7 @@ nav.scrolled .burger span { background: var(--text); }
       <a class="lang-btn" data-lang="ru" hreflang="ru">RU</a>
       <a class="lang-btn" data-lang="en" hreflang="en">EN</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" data-i18n-aria="aria_menu" aria-label="Izvēlne" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -672,32 +672,32 @@ nav.scrolled .burger span { background: var(--text); }
   <h2 class="section-title reveal reveal-delay-1" data-i18n="trust_title">Jūs saņemat <em>visu nepieciešamo</em></h2>
   <div class="trust-grid">
     <div class="trust-item reveal">
-      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/5.png?tr=w-160" alt="Apmācības" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
+      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/5.png?tr=w-160" alt="" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
       <div class="trust-label" data-i18n="trust1">Apmācības</div>
       <div class="trust-mini" data-i18n="trust1_mini">Profesionālas apmācības katrai iekārtai</div>
     </div>
     <div class="trust-item reveal reveal-delay-1">
-      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/6.png?tr=w-160" alt="Garantija" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
+      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/6.png?tr=w-160" alt="" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
       <div class="trust-label" data-i18n="trust2">24 mēneši garantija</div>
       <div class="trust-mini" data-i18n="trust2_mini">Pilna garantija visām iekārtām</div>
     </div>
     <div class="trust-item reveal reveal-delay-2">
-      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/7.png?tr=w-160" alt="Atbalsts" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
+      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/7.png?tr=w-160" alt="" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
       <div class="trust-label" data-i18n="trust3">Atbalsts</div>
       <div class="trust-mini" data-i18n="trust3_mini">Konsultācijas un ieteikumi iegādes un lietošanas procesā</div>
     </div>
     <div class="trust-item reveal">
-      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/8.png?tr=w-160" alt="Serviss" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
+      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/8.png?tr=w-160" alt="" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
       <div class="trust-label" data-i18n="trust4">Serviss</div>
       <div class="trust-mini" data-i18n="trust4_mini">Tehniskais serviss Latvijā</div>
     </div>
     <div class="trust-item reveal reveal-delay-1">
-      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/9.png?tr=w-160" alt="Instrukcija" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
+      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/9.png?tr=w-160" alt="" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
       <div class="trust-label" data-i18n="trust5">Instrukcija latviešu valodā</div>
       <div class="trust-mini" data-i18n="trust5_mini">Pilna dokumentācija dzimtajā valodā</div>
     </div>
     <div class="trust-item reveal reveal-delay-2">
-      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/10.png?tr=w-160" alt="CE Sertifikāts" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
+      <img src="https://ik.imagekit.io/xwsgpirygo/Zemits/icons/10.png?tr=w-160" alt="" style="width:56px;height:56px;object-fit:contain;border-radius:14px;">
       <div class="trust-label" data-i18n="trust6">CE Sertifikāts</div>
       <div class="trust-mini" data-i18n="trust6_mini">Atbilstība Eiropas kvalitātes standartiem</div>
     </div>
@@ -1035,6 +1035,7 @@ const i18n = {
     privacy_title:'Privātuma politika', privacy_close:'Aizvērt', banner_ok:'Sapratu',
     banner_text:'Mēs neizmantojam trešo pušu analītiku un izsekošanas sīkdatnes — jūsu pārlūkā tiek saglabāti tikai vietnes iestatījumi (piem., valoda). <a href="#" onclick="openPrivacy();return false;">Privātuma politika</a>',
     privacy_body:'Šī tīmekļa vietne izmanto tikai tehniski nepieciešamās funkcijas saziņai vietnē WhatsApp. Mēs <strong>neizmantojam</strong> trešo pušu analītiku un nenododam jūsu datus trešajām personām.<br><br>Iesniedzot pieteikumu, jūs piekrītat, ka jūsu kontaktinformācija tiks izmantota tikai saziņai ar "Zemits Skin Expert" speciālistiem.',
+    aria_menu:'Izvēlne', aria_privacy:'Privātums',
     page_title:'Zemits Skin Expert — profesionālas kosmetoloģijas iekārtas un apmācības', page_desc:'Zemits Skin Expert — oficiālais Zemits pārstāvis Baltijas valstīs. Profesionālas estētiskās kosmetoloģijas iekārtas, apmācības, semināri un serviss Latvijā.',
     nav_about:'Par mums', nav_equipment:'Iekārtas', nav_seminars:'Apmācības', nav_reviews:'Atsauksmes', nav_faq:'Jautājumi', nav_contact:'Sazināties',
     hero_title:'Mūsdienīgas estētiskās kosmetoloģijas iekārtas', hero_subtitle:'Redzami rezultāti.',
@@ -1123,6 +1124,7 @@ const i18n = {
     privacy_title:'Политика конфиденциальности', privacy_close:'Закрыть', banner_ok:'Понятно',
     banner_text:'Мы не используем стороннюю аналитику и отслеживающие cookie — в вашем браузере сохраняются только настройки сайта (например, язык). <a href="#" onclick="openPrivacy();return false;">Политика конфиденциальности</a>',
     privacy_body:'Этот сайт использует только технически необходимые функции для связи через WhatsApp. Мы <strong>не используем</strong> сторонние системы аналитики и не передаём ваши данные третьим лицам.<br><br>Отправляя заявку, вы соглашаетесь на использование ваших контактных данных исключительно для связи со специалистами Zemits Skin Expert.',
+    aria_menu:'Меню', aria_privacy:'Конфиденциальность',
     page_title:'Zemits Skin Expert — профессиональные косметологические аппараты и обучение', page_desc:'Zemits Skin Expert — официальный представитель Zemits в странах Балтии. Профессиональные аппараты для эстетической косметологии, обучение, семинары и сервис в Латвии.',
     nav_about:'О нас', nav_equipment:'Аппараты', nav_seminars:'Обучение', nav_reviews:'Отзывы', nav_faq:'Вопросы', nav_contact:'Связаться',
     hero_title:'Современное эстетическое косметологическое оборудование', hero_subtitle:'Видимые результаты.',
@@ -1211,6 +1213,7 @@ const i18n = {
     privacy_title:'Privacy Policy', privacy_close:'Close', banner_ok:'Got it',
     banner_text:'We use no third-party analytics or tracking cookies — your browser only stores site settings (such as language). <a href="#" onclick="openPrivacy();return false;">Privacy Policy</a>',
     privacy_body:'This website uses only technically necessary functions for communication via WhatsApp. We do <strong>not use</strong> third-party analytics and do not share your data with third parties.<br><br>By submitting a request, you agree that your contact details will be used solely for communication with Zemits Skin Expert specialists.',
+    aria_menu:'Menu', aria_privacy:'Privacy',
     page_title:'Zemits Skin Expert — professional cosmetology devices and training', page_desc:'Zemits Skin Expert is the official Zemits representative in the Baltic states. Professional aesthetic cosmetology devices, training, seminars and service in Latvia.',
     nav_about:'About us', nav_equipment:'Devices', nav_seminars:'Training', nav_reviews:'Reviews', nav_faq:'FAQ', nav_contact:'Contact us',
     hero_title:'Advanced aesthetic cosmetology equipment', hero_subtitle:'Visible results.',

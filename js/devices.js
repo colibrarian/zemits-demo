@@ -500,21 +500,21 @@ const deviceUi = {
     ui_request:'Pieprasīt cenu', ui_onrequest:'Cena pēc pieprasījuma', ui_more:'+ vēl {n} funkcijas', ui_learn:'Uzzināt vairāk',
     ui_contact:'Rakstīt mums', m_tech:'Tehnoloģijas un funkcijas', m_treats:'Ko risina', m_included:'Komplektā ar iekārtu', inc_train:'Apmācības',
     inc_warranty:'24 mēnešu garantija', inc_support:'Tehniskais atbalsts', inc_manual:'Instrukcija latviešu valodā', inc_ce:'CE sertifikāts',
-    m_sizes:'Pieejamie izmēri', ui_from:'No', tag_face:'Seja', tag_body:'Ķermenis', tag_laser:'Lāzers', tag_new:'Jaunums', tag_acc:'Aksesuāri',
+    m_sizes:'Pieejamie izmēri', ui_close:'Aizvērt', ui_from:'No', tag_face:'Seja', tag_body:'Ķermenis', tag_laser:'Lāzers', tag_new:'Jaunums', tag_acc:'Aksesuāri',
     tag_analysis:'Ādas analīze', tag_needle:'Mikroadatas', tag_both:'Seja/ķermenis'
   },
   ru:{
     ui_request:'Запросить цену', ui_onrequest:'Цена по запросу', ui_more:'+ ещё {n} функций', ui_learn:'Узнать больше', ui_contact:'Написать нам',
     m_tech:'Технологии и функции', m_treats:'Решает задачи', m_included:'В комплекте с аппаратом', inc_train:'Обучение',
     inc_warranty:'Гарантия 24 месяца', inc_support:'Техническая поддержка', inc_manual:'Инструкция на латышском языке', inc_ce:'Сертификат CE',
-    m_sizes:'Доступные размеры', ui_from:'от', tag_face:'Лицо', tag_body:'Тело', tag_laser:'Лазер', tag_new:'Новинка', tag_acc:'Аксессуары',
+    m_sizes:'Доступные размеры', ui_close:'Закрыть', ui_from:'от', tag_face:'Лицо', tag_body:'Тело', tag_laser:'Лазер', tag_new:'Новинка', tag_acc:'Аксессуары',
     tag_analysis:'Анализ кожи', tag_needle:'Микроиглы', tag_both:'Лицо/тело'
   },
   en:{
     ui_request:'Request price', ui_onrequest:'Price on request', ui_more:'+ {n} more functions', ui_learn:'Learn more', ui_contact:'Contact us',
     m_tech:'Technologies & functions', m_treats:'Helps with', m_included:'Included with the device', inc_train:'Training',
     inc_warranty:'24-month warranty', inc_support:'Technical support', inc_manual:'Manual in Latvian', inc_ce:'CE certificate',
-    m_sizes:'Available sizes', ui_from:'from', tag_face:'Face', tag_body:'Body', tag_laser:'Laser', tag_new:'New', tag_acc:'Accessories',
+    m_sizes:'Available sizes', ui_close:'Close', ui_from:'from', tag_face:'Face', tag_body:'Body', tag_laser:'Laser', tag_new:'New', tag_acc:'Accessories',
     tag_analysis:'Skin analysis', tag_needle:'Microneedling', tag_both:'Face/body'
   }
 };
@@ -569,6 +569,7 @@ function openDeviceModal(name){
       ${priceHtml}
       <button class="dm-req" onclick="closeDeviceModal();requestDevice('${safeName}')">${priceTxt ? t.ui_contact : t.ui_request}</button>
     </div>`;
+  document.querySelector('#devModal .dev-modal-close').setAttribute('aria-label', t.ui_close);
   document.getElementById('devModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

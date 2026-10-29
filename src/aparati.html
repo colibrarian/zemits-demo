@@ -289,7 +289,7 @@ nav .burger span { background: var(--text); }
 </div>
 
 <!-- PRIVACY INFO BANNER -->
-<div class="privacy-banner hidden" id="privacyBanner" role="region" aria-label="Privacy">
+<div class="privacy-banner hidden" id="privacyBanner" role="region" data-i18n-aria="aria_privacy" aria-label="Privātums">
   <div class="pb-text" data-i18n="banner_text"></div>
   <button class="pb-btn" onclick="ackBanner()" data-i18n="banner_ok">Sapratu</button>
 </div>
@@ -312,7 +312,7 @@ nav .burger span { background: var(--text); }
       <a class="lang-btn" data-lang="ru" hreflang="ru">RU</a>
       <a class="lang-btn" data-lang="en" hreflang="en">EN</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" data-i18n-aria="aria_menu" aria-label="Izvēlne" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -339,7 +339,7 @@ nav .burger span { background: var(--text); }
   <div class="legend-m">
     <img class="map-logo" src="https://ik.imagekit.io/xwsgpirygo/Zemits/Zemits_Logo_s_b.svg" alt="Zemits" onerror="this.outerHTML='<div class=&quot;map-logo-txt&quot;>ZEMITS</div>'">
     <div class="t"><span data-i18n="map_t1">Profesionāļu izvēle</span> <em><span class="map-count">8</span><span class="map-plus on">+</span> <span data-i18n="map_t2">valstīs</span></em></div>
-    <div class="map-nav" role="group" aria-label="Karte">
+    <div class="map-nav" role="group" data-i18n-aria="aria_map" aria-label="Karte">
       <button type="button" id="mapNavNA" aria-pressed="false" data-i18n="map_na">Ziemeļamerika</button>
       <button type="button" id="mapNavEU" aria-pressed="true" data-i18n="map_eu">Eiropa</button>
       <span class="map-hint" id="mapHint" aria-hidden="true">↔ <span data-i18n="map_hint">Pavelciet karti</span></span>
@@ -462,6 +462,7 @@ const i18n = {
     nav_home:'Sākumlapa', nav_faq:'Jautājumi', nav_equipment:'Iekārtas', nav_contact:'Sazināties',
     cat_eyebrow:'Iekārtu katalogs', cat_title:'iekārtu klāsts',
     cat_sub:'Profesionālas estētiskās kosmetoloģijas iekārtas sejas un ķermeņa procedūrām — ar apmācībām, garantiju un tehnisko atbalstu.',
+    aria_menu:'Izvēlne', aria_privacy:'Privātums', aria_map:'Karte',
     page_title:'Zemits Skin Expert — Iekārtu klāsts', page_desc:'Zemits iekārtu katalogs: profesionālas estētiskās kosmetoloģijas iekārtas sejai un ķermenim ar cenām, apmācībām, 24 mēnešu garantiju un servisu Latvijā.',
     meta_devices:'Iekārtas klāstā', meta_warranty:'Mēneši garantija',
     cat_cta:'Skatīt iekārtas', map_t1:'Profesionāļu izvēle', map_t2:'valstīs', map_na:'Ziemeļamerika', map_eu:'Eiropa', map_hint:'Pavelciet karti', map_aria:'Zemits iekārtas izmanto profesionāļi 8 valstīs: ASV, Kanādā, Meksikā, Lielbritānijā, Francijā, Spānijā, Polijā un Ukrainā.', stat_countries:'Valstis', stat_years:'Gadi inovāciju',
@@ -489,6 +490,7 @@ const i18n = {
     nav_home:'Главная', nav_faq:'Вопросы', nav_equipment:'Аппараты', nav_contact:'Связаться',
     cat_eyebrow:'Каталог оборудования', cat_title:'ассортимент аппаратов',
     cat_sub:'Профессиональное оборудование для эстетической косметологии — для процедур лица и тела, с обучением, гарантией и технической поддержкой.',
+    aria_menu:'Меню', aria_privacy:'Конфиденциальность', aria_map:'Карта',
     page_title:'Zemits Skin Expert — Каталог аппаратов', page_desc:'Каталог Zemits: профессиональные аппараты для эстетической косметологии лица и тела с ценами, обучением, гарантией 24 месяца и сервисом в Латвии.',
     meta_devices:'Аппаратов в каталоге', meta_warranty:'Месяца гарантии',
     cat_cta:'Смотреть аппараты', map_t1:'Выбор профессионалов в', map_t2:'странах', map_na:'Северная Америка', map_eu:'Европа', map_hint:'Листайте карту', map_aria:'Аппаратами Zemits пользуются профессионалы в 8 странах: США, Канаде, Мексике, Великобритании, Франции, Испании, Польше и Украине.', stat_countries:'Стран', stat_years:'Лет инноваций',
@@ -514,6 +516,7 @@ const i18n = {
     nav_home:'Home', nav_faq:'FAQ', nav_equipment:'Devices', nav_contact:'Contact us',
     cat_eyebrow:'Equipment catalogue', cat_title:'device range',
     cat_sub:'Professional aesthetic cosmetology equipment for face and body treatments — with training, warranty and technical support.',
+    aria_menu:'Menu', aria_privacy:'Privacy', aria_map:'Map',
     page_title:'Zemits Skin Expert — Device catalogue', page_desc:'Zemits device catalogue: professional aesthetic cosmetology devices for face and body, with prices, training, a 24-month warranty and service in Latvia.',
     meta_devices:'Devices in range', meta_warranty:'Months warranty',
     cat_cta:'View devices', map_t1:'Trusted by professionals in', map_t2:'countries', map_na:'North America', map_eu:'Europe', map_hint:'Swipe the map', map_aria:'Zemits devices are used by professionals in 8 countries: the USA, Canada, Mexico, the UK, France, Spain, Poland and Ukraine.', stat_countries:'Countries', stat_years:'Years of innovation',
