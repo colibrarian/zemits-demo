@@ -126,7 +126,7 @@ const devices = [
       en:['RF lifting','Electroporation','Electroporation (periorbital area)','Diamond microdermabrasion','Ultrasonic scrubber','Cold therapy','Oxygen therapy','Vacuum therapy']
     }},
   { name:'Zemits Dermeluxx Pro', price:2600, tag:'face', icon:'💧',
-    type:{lv:'Hidrodermabrāzijas sistēma', ru:'Система гидродермабразии', en:'Hydrodermabrasion system'},
+    type:{lv:'Daudzfunkcionāla sejas platforma', ru:'Многофункциональная платформа для лица', en:'Multifunctional facial platform'},
     feat:{
       lv:['Hidrodermabrāzija','Skābekļa terapija','Aukstuma terapija'],
       ru:['Гидродермабразия','Кислородная терапия','Криотерапия'],
