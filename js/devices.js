@@ -458,27 +458,63 @@ function photoFallback(img){
   img.src = img.src.split('?')[0];
 }
 
+/* catalogue card markup; used by aparati.html at runtime and by tools/build.mjs to pre-render the page */
+const FEAT_CAP = 6;
+function deviceCardHtml(d, i, t, lang){
+  const tagLabel = t['tag_' + d.tag];
+  const feats = d.feat[lang];
+  const shown = feats.slice(0, FEAT_CAP);
+  const extra = feats.length - shown.length;
+  const moreHtml = extra > 0 ? `<div class="eq-more">${t.ui_more.replace('{n}', extra)}</div>` : '';
+  let priceTxt = fmtPrice(d.price);
+  if (priceTxt && d.from) priceTxt = `${t.ui_from} ${priceTxt}`;
+  const priceHtml = priceTxt
+    ? `<div class="eq-price">${priceTxt}</div>`
+    : `<div class="eq-price req">${t.ui_onrequest}</div>`;
+  const safeName = d.name.replace(/'/g, "\\'");
+  const btnHtml = `<button class="eq-req eq-learn" onclick="openDeviceModal('${safeName}')">${t.ui_learn}</button>`;
+  const img = deviceImg[d.name];
+  return `
+    <div class="eq-card reveal">
+      <div class="eq-img">
+        <span class="eq-tag ${tagCls[d.tag]}">${tagLabel}</span>
+        <span class="eq-icon eq-icon-fallback">${d.icon}</span>
+        ${img ? `<img class="eq-photo" src="${img}" alt="${d.name}" width="800" height="800" ${i < 6 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" onerror="window.photoFallback && photoFallback(this)">` : ''}
+      </div>
+      <div class="eq-body">
+        <div class="eq-name">${d.name}</div>
+        <div class="eq-type">${d.type[lang]}</div>
+        <ul class="eq-features">${shown.map(f => `<li>${f}</li>`).join('')}</ul>
+        ${moreHtml}
+        <div class="eq-footer">
+          ${priceHtml}
+          ${btnHtml}
+        </div>
+      </div>
+    </div>`;
+}
+
 /* popup / card strings, merged into the page's i18n (keys the page already has win) */
 const deviceUi = {
   lv:{
     ui_request:'Pieprasīt cenu', ui_onrequest:'Cena pēc pieprasījuma', ui_more:'+ vēl {n} funkcijas', ui_learn:'Uzzināt vairāk',
     ui_contact:'Rakstīt mums', m_tech:'Tehnoloģijas un funkcijas', m_treats:'Ko risina', m_included:'Komplektā ar iekārtu', inc_train:'Apmācības',
     inc_warranty:'24 mēnešu garantija', inc_support:'Tehniskais atbalsts', inc_manual:'Instrukcija latviešu valodā', inc_ce:'CE sertifikāts',
-    m_sizes:'Pieejamie izmēri', ui_from:'No', tag_face:'Seja', tag_body:'Ķermenis', tag_laser:'Lāzers', tag_new:'Jaunums', tag_acc:'Aksesuāri',
+    m_sizes:'Pieejamie izmēri', ui_close:'Aizvērt', ui_from:'No', tag_face:'Seja', tag_body:'Ķermenis', tag_laser:'Lāzers', tag_new:'Jaunums', tag_acc:'Aksesuāri',
     tag_analysis:'Ādas analīze', tag_needle:'Mikroadatas', tag_both:'Seja/ķermenis'
   },
   ru:{
     ui_request:'Запросить цену', ui_onrequest:'Цена по запросу', ui_more:'+ ещё {n} функций', ui_learn:'Узнать больше', ui_contact:'Написать нам',
     m_tech:'Технологии и функции', m_treats:'Решает задачи', m_included:'В комплекте с аппаратом', inc_train:'Обучение',
     inc_warranty:'Гарантия 24 месяца', inc_support:'Техническая поддержка', inc_manual:'Инструкция на латышском языке', inc_ce:'Сертификат CE',
-    m_sizes:'Доступные размеры', ui_from:'от', tag_face:'Лицо', tag_body:'Тело', tag_laser:'Лазер', tag_new:'Новинка', tag_acc:'Аксессуары',
+    m_sizes:'Доступные размеры', ui_close:'Закрыть', ui_from:'от', tag_face:'Лицо', tag_body:'Тело', tag_laser:'Лазер', tag_new:'Новинка', tag_acc:'Аксессуары',
     tag_analysis:'Анализ кожи', tag_needle:'Микроиглы', tag_both:'Лицо/тело'
   },
   en:{
     ui_request:'Request price', ui_onrequest:'Price on request', ui_more:'+ {n} more functions', ui_learn:'Learn more', ui_contact:'Contact us',
     m_tech:'Technologies & functions', m_treats:'Helps with', m_included:'Included with the device', inc_train:'Training',
     inc_warranty:'24-month warranty', inc_support:'Technical support', inc_manual:'Manual in Latvian', inc_ce:'CE certificate',
-    m_sizes:'Available sizes', ui_from:'from', tag_face:'Face', tag_body:'Body', tag_laser:'Laser', tag_new:'New', tag_acc:'Accessories',
+    m_sizes:'Available sizes', ui_close:'Close', ui_from:'from', tag_face:'Face', tag_body:'Body', tag_laser:'Laser', tag_new:'New', tag_acc:'Accessories',
     tag_analysis:'Skin analysis', tag_needle:'Microneedling', tag_both:'Face/body'
   }
 };
@@ -516,7 +552,7 @@ function openDeviceModal(name){
   const safeName = name.replace(/'/g, "\\'");
   document.getElementById('devModalBody').innerHTML = `
     <div class="dm-head">
-      <div class="dm-icon"><span class="dm-emoji dm-emoji-fallback">${d.icon}</span>${img ? `<img class="dm-photo" src="${img}" alt="" decoding="async" onerror="photoFallback(this)">` : ''}</div>
+      <div class="dm-icon"><span class="dm-emoji dm-emoji-fallback">${d.icon}</span>${img ? `<img class="dm-photo" src="${img}" alt="" decoding="async" onerror="window.photoFallback && photoFallback(this)">` : ''}</div>
       <div>
         <span class="eq-tag ${tagCls[d.tag]}" style="position:static;display:inline-block;margin-bottom:8px">${tagLabel}</span>
         <div class="dm-name">${d.name}</div>
@@ -533,6 +569,7 @@ function openDeviceModal(name){
       ${priceHtml}
       <button class="dm-req" onclick="closeDeviceModal();requestDevice('${safeName}')">${priceTxt ? t.ui_contact : t.ui_request}</button>
     </div>`;
+  document.querySelector('#devModal .dev-modal-close').setAttribute('aria-label', t.ui_close);
   document.getElementById('devModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
