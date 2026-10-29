@@ -340,6 +340,18 @@ section { padding: 100px 5vw; }
 .review-name { font-weight: 600; font-size: .875rem; color: var(--text); }
 
 /* ── CONTACTS ── */
+#faq { background: var(--blue-ultra); display: grid; grid-template-columns: minmax(260px, 360px) 1fr; gap: 56px; align-items: start; }
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background: var(--white); border: 1.5px solid var(--mid); border-radius: var(--radius); transition: border-color .3s, box-shadow .3s; }
+.faq-item[open] { border-color: var(--blue-mid); box-shadow: var(--shadow-sm); }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 22px; font-weight: 500; font-size: .95rem; color: var(--text); line-height: 1.45; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--blue-ultra); color: var(--blue); font-size: 1.2rem; transition: transform .3s, background .3s, color .3s; }
+.faq-item[open] summary::after { transform: rotate(45deg); background: var(--blue); color: var(--white); }
+.faq-item summary:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; border-radius: var(--radius); }
+.faq-item p { padding: 0 22px 20px; font-size: .88rem; line-height: 1.75; color: var(--text-soft); }
+@media (max-width: 1024px) { #faq { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 600px) { .faq-item summary { padding: 16px 18px; font-size: .9rem; } .faq-item p { padding: 0 18px 18px; } }
 #contacts { background: var(--off-white); }
 .contacts-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; margin-top: 56px; align-items: start; }
 .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
@@ -553,11 +565,11 @@ nav.scrolled .burger span { background: var(--text); }
     </div>
     <div class="equipment-card reveal reveal-delay-2">
       <div class="eq-img-placeholder"><span class="eq-tag both" data-i18n="tag_both">Seja/ķermenis</span><span class="eq-icon">🌀</span></div>
-      <div class="eq-body"><div class="eq-name">Zemits Leger 2.0</div><div class="eq-type" data-i18n="leger_type">Vakuuma sēžamvietu kopšana un pretcelulīta sistēma</div><ul class="eq-features"><li data-i18n="leger_f1">Vakuuma sēžamvietu formas uzlabošana</li><li data-i18n="leger_f2">Pretcelulīta terapija</li><li data-i18n="leger_f3">Limfodrenāža</li><li data-i18n="leger_f4">Ādas elastības uzlabošana</li></ul></div>
+      <div class="eq-body"><div class="eq-name">Zemits Leger 2.0</div><div class="eq-type" data-device-type="Zemits Leger 2.0">Vakuuma terapijas sistēma</div><ul class="eq-features"><li data-i18n="leger_f1">Vakuuma sēžamvietu formas uzlabošana</li><li data-i18n="leger_f2">Pretcelulīta terapija</li><li data-i18n="leger_f3">Limfodrenāža</li><li data-i18n="leger_f4">Ādas elastības uzlabošana</li></ul></div>
     </div>
     <div class="equipment-card reveal">
       <div class="eq-img-placeholder"><span class="eq-tag teal" data-i18n="tag_face">Seja</span><span class="eq-icon">💎</span></div>
-      <div class="eq-body"><div class="eq-name">Zemits Verstand HD Pro</div><div class="eq-type" data-i18n="verstand_type">8-in-1 ar HydroDiamond™ tehnoloģiju</div><ul class="eq-features"><li data-i18n="verstand_f1">HydroDiamond™ tehnoloģija</li><li data-i18n="verstand_f2">RF liftings</li><li data-i18n="verstand_f3">Elektroporācija</li><li data-i18n="verstand_f4">Vakuuma terapija · Krioterapija</li></ul></div>
+      <div class="eq-body"><div class="eq-name">Zemits Verstand HD Pro</div><div class="eq-type" data-device-type="Zemits Verstand HD Pro">Daudzfunkcionāla sejas platforma</div><ul class="eq-features"><li data-i18n="verstand_f1">HydroDiamond™ tehnoloģija</li><li data-i18n="verstand_f2">RF liftings</li><li data-i18n="verstand_f3">Elektroporācija</li><li data-i18n="verstand_f4">Vakuuma terapija</li></ul></div>
     </div>
     <div class="equipment-card reveal reveal-delay-1">
       <div class="eq-img-placeholder"><span class="eq-tag teal" data-i18n="tag_face">Seja</span><span class="eq-icon">💧</span></div>
@@ -901,6 +913,41 @@ nav.scrolled .burger span { background: var(--text); }
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-head">
+    <div class="section-eyebrow reveal" data-i18n="faq_eyebrow">Jautājumi un atbildes</div>
+    <h2 class="section-title reveal reveal-delay-1" data-i18n="faq_title">Biežāk uzdotie <em>jautājumi</em></h2>
+    <p class="section-sub reveal reveal-delay-2" data-i18n="faq_sub">Par skaistumkopšanas aparātu izvēli</p>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item reveal">
+      <summary data-i18n="faq_q1">Kā izvēlēties piemērotāko skaistumkopšanas aparātu savam salonam?</summary>
+      <p data-i18n="faq_a1">Pirms aparāta iegādes svarīgi izvērtēt, kādas procedūras vēlaties piedāvāt, kādas ir jūsu klientu galvenās vajadzības un cik liels ir plānotais ieguldījums. Jāņem vērā arī aparāta funkcionalitāte, lietošanas ērtums, apmācību pieejamība un turpmākās uzturēšanas izmaksas. Zemits Latvija komanda palīdzēs izvēlēties ierīci, kas vislabāk atbilst jūsu profesionālajiem mērķiem.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary data-i18n="faq_q2">Vai ir vērts iegādāties aparātu, kas apvieno vairākas tehnoloģijas, vai labāk izvēlēties vienu specializētu ierīci?</summary>
+      <p data-i18n="faq_a2">Multifunkcionāls aparāts ļauj paplašināt pakalpojumu klāstu, piedāvāt klientiem dažādas procedūras un efektīvāk izmantot darba vietu. Savukārt specializēta ierīce ir lieliska izvēle, ja vēlaties koncentrēties uz konkrētu procedūru vai tehnoloģiju. Piemērotākā izvēle ir atkarīga no jūsu darba specifikas, klientu pieprasījuma un salona attīstības plāniem.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary data-i18n="faq_q3">Kuri ir pieprasītākie Zemits skaistumkopšanas aparāti 2026. gadā?</summary>
+      <p data-i18n="faq_a3">Starp 2026. gada pieprasītākajiem Zemits aparātiem īpaši izceļas jaunais Verstand HD Pro, Abigon Pro un Vivalumix. Šīs ierīces piesaista skaistumkopšanas speciālistu uzmanību ar savām tehnoloģiskajām iespējām un pielietojumu profesionālajā darbā. Vienlaikus arī pārējie Zemits aparāti saglabā savu aktualitāti — katrs no tiem ir piemērots noteiktām procedūrām, klientu vajadzībām un speciālistu darba mērķiem.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary data-i18n="faq_q4">Vai ir vērts iegādāties profesionālu aparātu, ja tikai sāku darbu skaistumkopšanas nozarē?</summary>
+      <p data-i18n="faq_a4">Svarīgi ir izvēlēties aparātu, kas atbilst jūsu pieredzei, kvalifikācijai un plānotajam pakalpojumu klāstam. Zemits Latvija piedāvā profesionālas apmācības dažādiem sagatavotības līmeņiem, īpašu uzmanību pievēršot speciālistiem, kuri tikai uzsāk savu profesionālo darbību vai pirmo reizi apgūst kādu no metodēm. Mūsu mērķis ir sniegt ne tikai zināšanas, bet arī praktiskas iemaņas un pārliecību, lai jūs varētu droši un patstāvīgi uzsākt darbu ar izvēlēto aparātu. Ar mūsu atbalstu jaunu tehnoloģiju apgūšana kļūst vienkāršāka un pieejamāka.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary data-i18n="faq_q5">Kam pievērst uzmanību, salīdzinot dažādu ražotāju skaistumkopšanas aparātus?</summary>
+      <p data-i18n="faq_a5">Izvēloties profesionālu skaistumkopšanas aparātu, svarīgi ņemt vērā ne tikai cenu, bet arī tehnoloģijas, kvalitāti, garantijas nosacījumus, apmācību iespējas un servisa pieejamību. Mēs esam vienīgais uzņēmums Latvijā, kas nodrošina profesionālas apmācības, tehnisko servisu un atbalstu arī pēc aparāta iegādes. Tas sniedz pārliecību, ka nepieciešamības gadījumā palīdzība būs pieejama tepat Latvijā, nodrošinot drošību un ērtības jūsu ikdienas darbā.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary data-i18n="faq_q6">Kur iegādāties profesionālu kosmētiku aparatūras procedūrām?</summary>
+      <p data-i18n="faq_a6">Zemits piedāvā ne tikai profesionālus skaistumkopšanas aparātus, bet arī specializētu kosmētiku aparātprocedūrām. Zemits Latvija nodrošina ne tikai apmācības un profesionālu atbalstu, bet arī palīdz izvēlēties katrai tehnoloģijai un procedūrai piemērotākos kosmētikas līdzekļus. Tas ļauj speciālistiem ērti iegādāties gan aparatūru, gan tās lietošanai nepieciešamo kosmētiku vienuviet, nodrošinot kvalitatīvu un profesionālu procedūru veikšanu.</p>
+    </details>
+  </div>
+</section>
+
 <!-- CONTACTS -->
 <section id="contacts">
   <div class="section-eyebrow reveal" data-i18n="con_eyebrow">Kontakti</div>
@@ -1003,8 +1050,8 @@ const i18n = {
     tag_body:'Ķermenis', tag_face:'Seja', tag_both:'Seja/ķermenis', tag_laser:'Lāzers', tag_micro:'Mikroadatas',
     abigon_type:'Ķermeņa un sejas kontūrēšanas sistēma', abigon_f1:'Vakuuma terapija', abigon_f2:'Multipolārs RF liftings', abigon_f3:'Bipolārs RF liftings', abigon_f4:'Tripolārs RF liftings', abigon_f5:'Kavitācija',
     bionexis_type:'Ķermeņa kontūrēšanas sistēma', bionexis_f1:'Vakuuma terapija', bionexis_f2:'Pretcelulīta ruļļu masāža', bionexis_f3:'RF liftings', bionexis_f4:'LED terapija', bionexis_f5:'Kavitācija',
-    leger_type:'Vakuuma sēžamvietu kopšana un pretcelulīta sistēma', leger_f1:'Vakuuma sēžamvietu formas uzlabošana', leger_f2:'Pretcelulīta terapija', leger_f3:'Limfodrenāža', leger_f4:'Ādas elastības uzlabošana',
-    verstand_type:'8-in-1 ar HydroDiamond™ tehnoloģiju', verstand_f1:'HydroDiamond™ tehnoloģija', verstand_f2:'RF liftings', verstand_f3:'Elektroporācija', verstand_f4:'Vakuuma terapija · Krioterapija',
+    leger_f1:'Vakuuma sēžamvietu formas uzlabošana', leger_f2:'Pretcelulīta terapija', leger_f3:'Limfodrenāža', leger_f4:'Ādas elastības uzlabošana',
+    verstand_f1:'HydroDiamond™ tehnoloģija', verstand_f2:'RF liftings', verstand_f3:'Elektroporācija', verstand_f4:'Vakuuma terapija',
     eau_type:'Daudzfunkcionāla sejas platforma', eau_f1:'Hidrodermabrāzija', eau_f2:'RF liftings', eau_f3:'Skābekļa terapija', eau_f4:'Sonoforēze · Krioterapija',
     frio_type:'Kontrastterapija ādas atjaunošanai sejai un ķermenim', frio_f1:'Multipolārs RF liftings', frio_f2:'Bipolārs RF liftings', frio_f3:'Tripolārs RF liftings', frio_f4:'Krioterapija',
     ogma_type:'Nd:YAG lāzers tetovējumu noņemšanai', ogma_f1:'Tetovējumu noņemšana (melns, zils, sarkans u.c.)', ogma_f2:'Permanentā grima noņemšana', ogma_f3:'Hiperpigmentācijas ārstēšana', ogma_f4:'Oglekļa sejas pīlings',
@@ -1024,6 +1071,19 @@ const i18n = {
     ev3_title:'Mikrostrāvas apmācības PRO', ev3_desc:'Padziļināta praktiskā apmācība mikrostrāvas procedūru veikšanā – droši, efektīvi un profesionāli! Praktiska pieredze darbā ar mikrostrāvu iekārtām, efektīvas procedūru tehnikas, atbildes uz profesionāliem jautājumiem. Pieteikšanās: <a href="tel:+37122015527" style="color:var(--blue-mid);text-decoration:none;font-weight:500">+371 22 015 527</a>', ev3_opt:'Meistarklase 23–24.11 — Mikrostrāvas apmācības PRO',
     ev4_title:'Iepazīsimies — Zemits', ev4_desc:'Uzzini par zīmolu, tehnoloģijām, produktu iespējām un profesionālā atbalsta iespējām. Vada: Dace Tione, Zemits Skin Expert vadītāja un trenere.', ev4_opt:'Seminārs 26.10 — Iepazīsimies Zemits',
     price_label:'Dalības maksa', register_btn:'Pieteikties',
+    faq_eyebrow:'Jautājumi un atbildes', faq_title:'Biežāk uzdotie <em>jautājumi</em>', faq_sub:'Par skaistumkopšanas aparātu izvēli',
+    faq_q1:'Kā izvēlēties piemērotāko skaistumkopšanas aparātu savam salonam?',
+    faq_a1:'Pirms aparāta iegādes svarīgi izvērtēt, kādas procedūras vēlaties piedāvāt, kādas ir jūsu klientu galvenās vajadzības un cik liels ir plānotais ieguldījums. Jāņem vērā arī aparāta funkcionalitāte, lietošanas ērtums, apmācību pieejamība un turpmākās uzturēšanas izmaksas. Zemits Latvija komanda palīdzēs izvēlēties ierīci, kas vislabāk atbilst jūsu profesionālajiem mērķiem.',
+    faq_q2:'Vai ir vērts iegādāties aparātu, kas apvieno vairākas tehnoloģijas, vai labāk izvēlēties vienu specializētu ierīci?',
+    faq_a2:'Multifunkcionāls aparāts ļauj paplašināt pakalpojumu klāstu, piedāvāt klientiem dažādas procedūras un efektīvāk izmantot darba vietu. Savukārt specializēta ierīce ir lieliska izvēle, ja vēlaties koncentrēties uz konkrētu procedūru vai tehnoloģiju. Piemērotākā izvēle ir atkarīga no jūsu darba specifikas, klientu pieprasījuma un salona attīstības plāniem.',
+    faq_q3:'Kuri ir pieprasītākie Zemits skaistumkopšanas aparāti 2026. gadā?',
+    faq_a3:'Starp 2026. gada pieprasītākajiem Zemits aparātiem īpaši izceļas jaunais Verstand HD Pro, Abigon Pro un Vivalumix. Šīs ierīces piesaista skaistumkopšanas speciālistu uzmanību ar savām tehnoloģiskajām iespējām un pielietojumu profesionālajā darbā. Vienlaikus arī pārējie Zemits aparāti saglabā savu aktualitāti — katrs no tiem ir piemērots noteiktām procedūrām, klientu vajadzībām un speciālistu darba mērķiem.',
+    faq_q4:'Vai ir vērts iegādāties profesionālu aparātu, ja tikai sāku darbu skaistumkopšanas nozarē?',
+    faq_a4:'Svarīgi ir izvēlēties aparātu, kas atbilst jūsu pieredzei, kvalifikācijai un plānotajam pakalpojumu klāstam. Zemits Latvija piedāvā profesionālas apmācības dažādiem sagatavotības līmeņiem, īpašu uzmanību pievēršot speciālistiem, kuri tikai uzsāk savu profesionālo darbību vai pirmo reizi apgūst kādu no metodēm. Mūsu mērķis ir sniegt ne tikai zināšanas, bet arī praktiskas iemaņas un pārliecību, lai jūs varētu droši un patstāvīgi uzsākt darbu ar izvēlēto aparātu. Ar mūsu atbalstu jaunu tehnoloģiju apgūšana kļūst vienkāršāka un pieejamāka.',
+    faq_q5:'Kam pievērst uzmanību, salīdzinot dažādu ražotāju skaistumkopšanas aparātus?',
+    faq_a5:'Izvēloties profesionālu skaistumkopšanas aparātu, svarīgi ņemt vērā ne tikai cenu, bet arī tehnoloģijas, kvalitāti, garantijas nosacījumus, apmācību iespējas un servisa pieejamību. Mēs esam vienīgais uzņēmums Latvijā, kas nodrošina profesionālas apmācības, tehnisko servisu un atbalstu arī pēc aparāta iegādes. Tas sniedz pārliecību, ka nepieciešamības gadījumā palīdzība būs pieejama tepat Latvijā, nodrošinot drošību un ērtības jūsu ikdienas darbā.',
+    faq_q6:'Kur iegādāties profesionālu kosmētiku aparatūras procedūrām?',
+    faq_a6:'Zemits piedāvā ne tikai profesionālus skaistumkopšanas aparātus, bet arī specializētu kosmētiku aparātprocedūrām. Zemits Latvija nodrošina ne tikai apmācības un profesionālu atbalstu, bet arī palīdz izvēlēties katrai tehnoloģijai un procedūrai piemērotākos kosmētikas līdzekļus. Tas ļauj speciālistiem ērti iegādāties gan aparatūru, gan tās lietošanai nepieciešamo kosmētiku vienuviet, nodrošinot kvalitatīvu un profesionālu procedūru veikšanu.',
     rev_eyebrow:'Atsauksmes', rev_title:'Ko saka <em>mūsu klienti</em>',
     con_eyebrow:'Kontakti', con_title:'Sazinies ar mums<br><em>jau šodien</em>', con_desc:'Labprāt atbildēsim uz jūsu jautājumiem, sniegsim konsultāciju un palīdzēsim pieteikties semināram.',
     con_phone_lbl:'Telefons', con_addr_lbl:'Adrese', con_addr:'Vienības gatve 192, Rīga, Latvija',
@@ -1077,8 +1137,8 @@ const i18n = {
     tag_body:'Тело', tag_face:'Лицо', tag_both:'Лицо/тело', tag_laser:'Лазер', tag_micro:'Микроиглы',
     abigon_type:'Система контурирования тела и лица', abigon_f1:'Вакуумная терапия', abigon_f2:'Мультиполярный RF-лифтинг', abigon_f3:'Биполярный RF-лифтинг', abigon_f4:'Триполярный RF-лифтинг', abigon_f5:'Кавитация',
     bionexis_type:'Система контурирования тела', bionexis_f1:'Вакуумная терапия', bionexis_f2:'Антицеллюлитный роликовый массаж', bionexis_f3:'RF-лифтинг', bionexis_f4:'LED-терапия', bionexis_f5:'Кавитация',
-    leger_type:'Вакуумная коррекция ягодиц и антицеллюлитная система', leger_f1:'Вакуумное улучшение формы ягодиц', leger_f2:'Антицеллюлитная терапия', leger_f3:'Лимфодренаж', leger_f4:'Улучшение эластичности кожи',
-    verstand_type:'8-в-1 с технологией HydroDiamond™', verstand_f1:'Технология HydroDiamond™', verstand_f2:'RF-укрепление кожи', verstand_f3:'Неинвазивная мезотерапия', verstand_f4:'Вакуумный массаж · Криотерапия',
+    leger_f1:'Вакуумное улучшение формы ягодиц', leger_f2:'Антицеллюлитная терапия', leger_f3:'Лимфодренаж', leger_f4:'Улучшение эластичности кожи',
+    verstand_f1:'Технология HydroDiamond™', verstand_f2:'RF-укрепление кожи', verstand_f3:'Неинвазивная мезотерапия', verstand_f4:'Вакуумный массаж',
     eau_type:'Многофункциональная платформа для лица', eau_f1:'Гидродермабразия', eau_f2:'RF-подтяжка кожи', eau_f3:'Кислородная мезотерапия', eau_f4:'Фонофорез · Криотерапия',
     frio_type:'Контрастная терапия для омоложения кожи лица и тела', frio_f1:'Мультиполярный RF-лифтинг', frio_f2:'Биполярный RF-лифтинг', frio_f3:'Триполярный RF-лифтинг', frio_f4:'Криотерапия',
     ogma_type:'Nd:YAG лазер для удаления татуировок', ogma_f1:'Удаление татуировок (чёрный, синий, красный и др.)', ogma_f2:'Удаление перманентного макияжа', ogma_f3:'Лечение гиперпигментации', ogma_f4:'Карбоновый пилинг',
@@ -1098,6 +1158,19 @@ const i18n = {
     ev3_title:'Обучение микротокам PRO', ev3_desc:'Углублённое практическое обучение проведению микротоковых процедур — безопасно, эффективно и профессионально! Практический опыт работы с микротоковыми аппаратами, эффективные техники процедур, ответы на профессиональные вопросы. Запись: <a href="tel:+37122015527" style="color:var(--blue-mid);text-decoration:none;font-weight:500">+371 22 015 527</a>', ev3_opt:'Мастер-класс 23–24.11 — Обучение микротокам PRO',
     ev4_title:'Знакомство с Zemits', ev4_desc:'Узнайте о бренде, технологиях, возможностях продуктов и профессиональной поддержке. Ведёт: Dace Tione, руководитель и тренер Zemits Skin Expert.', ev4_opt:'Семинар 26.10 — Знакомство с Zemits',
     price_label:'Стоимость участия', register_btn:'Записаться',
+    faq_eyebrow:'Вопросы и ответы', faq_title:'Часто задаваемые <em>вопросы</em>', faq_sub:'О выборе косметологических аппаратов',
+    faq_q1:'Как выбрать подходящий косметологический аппарат для своего салона?',
+    faq_a1:'Перед покупкой аппарата важно оценить, какие процедуры вы хотите предлагать, каковы основные потребности ваших клиентов и каков планируемый объём вложений. Также стоит учитывать функциональность аппарата, удобство работы, наличие обучения и дальнейшие расходы на обслуживание. Команда Zemits Latvija поможет выбрать устройство, которое лучше всего соответствует вашим профессиональным целям.',
+    faq_q2:'Стоит ли покупать аппарат, объединяющий несколько технологий, или лучше выбрать одно специализированное устройство?',
+    faq_a2:'Многофункциональный аппарат позволяет расширить спектр услуг, предлагать клиентам разные процедуры и эффективнее использовать рабочее место. Специализированное устройство — отличный выбор, если вы хотите сосредоточиться на конкретной процедуре или технологии. Оптимальный вариант зависит от специфики вашей работы, спроса клиентов и планов развития салона.',
+    faq_q3:'Какие косметологические аппараты Zemits самые востребованные в 2026 году?',
+    faq_a3:'Среди самых востребованных аппаратов Zemits 2026 года особенно выделяются новый Verstand HD Pro, Abigon Pro и Vivalumix. Эти устройства привлекают внимание специалистов своими технологическими возможностями и применением в профессиональной работе. При этом и остальные аппараты Zemits сохраняют свою актуальность — каждый из них подходит для определённых процедур, потребностей клиентов и рабочих задач специалиста.',
+    faq_q4:'Стоит ли покупать профессиональный аппарат, если я только начинаю работать в бьюти-сфере?',
+    faq_a4:'Важно выбрать аппарат, который соответствует вашему опыту, квалификации и планируемому перечню услуг. Zemits Latvija предлагает профессиональное обучение для разных уровней подготовки и уделяет особое внимание специалистам, которые только начинают профессиональную деятельность или впервые осваивают какой-либо метод. Наша цель — дать не только знания, но и практические навыки и уверенность, чтобы вы могли безопасно и самостоятельно начать работу с выбранным аппаратом. С нашей поддержкой освоить новые технологии проще и доступнее.',
+    faq_q5:'На что обратить внимание, сравнивая косметологические аппараты разных производителей?',
+    faq_a5:'При выборе профессионального косметологического аппарата важно учитывать не только цену, но и технологии, качество, условия гарантии, возможности обучения и доступность сервиса. Мы — единственная компания в Латвии, которая обеспечивает профессиональное обучение, техническое обслуживание и поддержку и после покупки аппарата. Это даёт уверенность, что при необходимости помощь будет доступна здесь же, в Латвии, — для безопасности и удобства вашей ежедневной работы.',
+    faq_q6:'Где купить профессиональную косметику для аппаратных процедур?',
+    faq_a6:'Zemits предлагает не только профессиональные косметологические аппараты, но и специализированную косметику для аппаратных процедур. Zemits Latvija обеспечивает не только обучение и профессиональную поддержку, но и помогает подобрать наиболее подходящие косметические средства для каждой технологии и процедуры. Так специалисты могут удобно приобрести в одном месте и оборудование, и необходимую для работы с ним косметику, обеспечивая качественное и профессиональное проведение процедур.',
     rev_eyebrow:'Отзывы', rev_title:'Что говорят <em>наши клиенты</em>',
     con_eyebrow:'Контакты', con_title:'Свяжемся<br><em>уже сегодня</em>', con_desc:'Мы всегда готовы ответить на ваши вопросы, провести консультацию или помочь записаться на семинар.',
     con_phone_lbl:'Телефон', con_addr_lbl:'Адрес', con_addr:'Vienības gatve 192, Рига, Латвия',
@@ -1151,8 +1224,8 @@ const i18n = {
     tag_body:'Body', tag_face:'Face', tag_both:'Face/body', tag_laser:'Laser', tag_micro:'Microneedling',
     abigon_type:'Body & face contouring system', abigon_f1:'Vacuum therapy', abigon_f2:'Multipolar RF lifting', abigon_f3:'Bipolar RF lifting', abigon_f4:'Tripolar RF lifting', abigon_f5:'Cavitation',
     bionexis_type:'Body contouring system', bionexis_f1:'Vacuum therapy', bionexis_f2:'Anti-cellulite roller massage', bionexis_f3:'RF lifting', bionexis_f4:'LED therapy', bionexis_f5:'Cavitation',
-    leger_type:'Vacuum buttock enhancement & anti-cellulite system', leger_f1:'Vacuum buttock shaping', leger_f2:'Anti-cellulite therapy', leger_f3:'Lymphatic drainage', leger_f4:'Improved skin elasticity',
-    verstand_type:'8-in-1 with HydroDiamond™ technology', verstand_f1:'HydroDiamond™ technology', verstand_f2:'RF skin tightening', verstand_f3:'Non-invasive mesotherapy', verstand_f4:'Vacuum massage · Cryotherapy',
+    leger_f1:'Vacuum buttock shaping', leger_f2:'Anti-cellulite therapy', leger_f3:'Lymphatic drainage', leger_f4:'Improved skin elasticity',
+    verstand_f1:'HydroDiamond™ technology', verstand_f2:'RF skin tightening', verstand_f3:'Non-invasive mesotherapy', verstand_f4:'Vacuum massage',
     eau_type:'Multifunctional facial platform', eau_f1:'Hydrodermabrasion', eau_f2:'RF skin tightening', eau_f3:'Oxygen mesotherapy', eau_f4:'Phonophoresis · Cryotherapy',
     frio_type:'Contrast therapy for face and body skin rejuvenation', frio_f1:'Multipolar RF lifting', frio_f2:'Bipolar RF lifting', frio_f3:'Tripolar RF lifting', frio_f4:'Cryotherapy',
     ogma_type:'Nd:YAG laser for tattoo removal', ogma_f1:'Tattoo removal (black, blue, red, etc.)', ogma_f2:'Permanent makeup removal', ogma_f3:'Hyperpigmentation treatment', ogma_f4:'Carbon peel facial',
@@ -1172,6 +1245,19 @@ const i18n = {
     ev3_title:'Microcurrent Training PRO', ev3_desc:'In-depth hands-on training in performing microcurrent treatments — safely, effectively and professionally! Practical experience with microcurrent devices, effective treatment techniques, answers to professional questions. Registration: <a href="tel:+37122015527" style="color:var(--blue-mid);text-decoration:none;font-weight:500">+371 22 015 527</a>', ev3_opt:'Masterclass 23–24.11 — Microcurrent Training PRO',
     ev4_title:'Getting to know Zemits', ev4_desc:'Learn about the brand, technologies, product possibilities and professional support. Hosted by Dace Tione, head and trainer of Zemits Skin Expert.', ev4_opt:'Seminar 26.10 — Getting to know Zemits',
     price_label:'Participation fee', register_btn:'Sign up',
+    faq_eyebrow:'Questions & answers', faq_title:'Frequently asked <em>questions</em>', faq_sub:'About choosing beauty devices',
+    faq_q1:'How do I choose the right beauty device for my salon?',
+    faq_a1:'Before buying a device, it is important to consider which treatments you want to offer, what your clients need most and how much you plan to invest. You should also look at the device’s functionality, ease of use, the availability of training and the ongoing maintenance costs. The Zemits Latvija team will help you choose the device that best fits your professional goals.',
+    faq_q2:'Is it worth buying a device that combines several technologies, or is a single specialised device better?',
+    faq_a2:'A multifunctional device lets you expand your range of services, offer clients a variety of treatments and make better use of your workspace. A specialised device, on the other hand, is a great choice if you want to focus on a particular treatment or technology. The right choice depends on the nature of your work, client demand and your salon’s development plans.',
+    faq_q3:'Which Zemits beauty devices are most in demand in 2026?',
+    faq_a3:'Among the most popular Zemits devices of 2026, the new Verstand HD Pro, Abigon Pro and Vivalumix stand out in particular. These devices attract the attention of beauty professionals with their technological capabilities and their use in professional practice. At the same time, the other Zemits devices remain just as relevant — each is suited to specific treatments, client needs and professional goals.',
+    faq_q4:'Is it worth buying a professional device if I am just starting out in the beauty industry?',
+    faq_a4:'It is important to choose a device that matches your experience, qualifications and planned range of services. Zemits Latvija offers professional training for different levels, with particular attention to specialists who are just starting their career or learning a method for the first time. Our goal is to provide not only knowledge but also practical skills and confidence, so that you can start working with your chosen device safely and independently. With our support, learning new technologies becomes simpler and more accessible.',
+    faq_q5:'What should I look for when comparing beauty devices from different manufacturers?',
+    faq_a5:'When choosing a professional beauty device, it is important to consider not only the price but also the technology, quality, warranty terms, training options and availability of service. We are the only company in Latvia that provides professional training, technical service and support after the purchase as well. This gives you confidence that, if needed, help is available right here in Latvia, keeping your everyday work safe and convenient.',
+    faq_q6:'Where can I buy professional cosmetics for device-based treatments?',
+    faq_a6:'Zemits offers not only professional beauty devices but also specialised cosmetics for device-based treatments. Zemits Latvija provides training and professional support, and also helps you choose the most suitable cosmetic products for each technology and treatment. This lets specialists conveniently buy both the equipment and the cosmetics needed to use it in one place, ensuring high-quality, professional treatments.',
     rev_eyebrow:'Reviews', rev_title:'What <em>our clients</em> say',
     con_eyebrow:'Contact', con_title:'Get in touch<br><em>right now</em>', con_desc:'We are available to answer your questions, provide a consultation, or help you sign up for a seminar.',
     con_phone_lbl:'Phone', con_addr_lbl:'Address', con_addr:'Vienības gatve 192, Riga, Latvia',
@@ -1202,6 +1288,11 @@ function setLang(lang) {
   });
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  /* cards marked data-device-type show the same type line as their popup */
+  document.querySelectorAll('[data-device-type]').forEach(el => {
+    const d = devices.find(x => x.name === el.dataset.deviceType);
+    if (d) el.textContent = d.type[lang];
   });
   document.documentElement.lang = lang;
   updateTopicPreview();
