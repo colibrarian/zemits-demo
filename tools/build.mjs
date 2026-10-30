@@ -90,7 +90,22 @@ function headTags(html, lang, page, t) {
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${desc}">`)
     .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${pageUrl(lang, page)}">\n${alternates}`)
     .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${pageUrl(lang, page)}">`)
-    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${title}">\n<meta property="og:description" content="${desc}">\n<meta property="og:locale" content="${LOCALE[lang]}">`);
+    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${title}">\n<meta property="og:description" content="${desc}">\n<meta property="og:locale" content="${LOCALE[lang]}">\n${ogImage(lang, page, title, desc)}`);
+}
+
+/* ── link preview picture, rendered by tools/make-images.mjs ── */
+function ogImage(lang, page, title, desc) {
+  const img = `${SITE}/img/og/${lang}-${page.replace('.html', '')}.png`;
+  return [
+    `<meta property="og:image" content="${img}">`,
+    `<meta property="og:image:width" content="1200">`,
+    `<meta property="og:image:height" content="630">`,
+    `<meta property="og:image:alt" content="${title}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${title}">`,
+    `<meta name="twitter:description" content="${desc}">`,
+    `<meta name="twitter:image" content="${img}">`,
+  ].join('\n');
 }
 
 /* ── language switcher: real links to the same page in the other languages ── */
@@ -109,7 +124,8 @@ function langLinks(html, lang, page) {
 function assetPaths(html, lang) {
   if (lang === 'lv') return html;
   return html
-    .replace(/(href|src)="(css|js)\//g, '$1="../$2/');
+    .replace(/(href|src)="(css|js)\//g, '$1="../$2/')
+    .replace(/href="(favicon\.ico|apple-touch-icon\.png|site\.webmanifest)"/g, 'href="../$1"');
 }
 
 /* ── structured data for search engines and AI assistants ── */
