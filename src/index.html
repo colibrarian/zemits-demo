@@ -124,7 +124,7 @@ section { padding: 100px 5vw; }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 56px; }
 /* Left col: photo + team */
 .about-left { display: flex; flex-direction: column; gap: 24px; }
-.about-photo { width: 100%; aspect-ratio: 4/3; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--blue-pale), var(--light)); border: 1.5px solid var(--mid); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text-muted); font-size: .85rem; overflow: hidden; position: relative; }
+.about-photo { width: 100%; aspect-ratio: 1/1; max-width: 640px; margin-inline: auto; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--blue-pale), var(--light)); border: 1.5px solid var(--mid); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text-muted); font-size: .85rem; overflow: hidden; position: relative; }
 /* Right col: heading + stats + text */
 .about-right { display: flex; flex-direction: column; gap: 32px; }
 .about-stats-row { display: flex; gap: 0; border: 1.5px solid var(--mid); border-radius: var(--radius); overflow: hidden; }
@@ -616,7 +616,7 @@ nav.scrolled .burger span { background: var(--text); }
   <div class="about-grid">
     <!-- LEFT: photo + team cards -->
     <div class="about-left">
-      <div class="about-photo reveal reveal-delay-1" style="background-image:url('https://ik.imagekit.io/xwsgpirygo/Zemits/Komanda/team.jpeg?tr=w-1200');background-size:cover;background-position:center top;">
+      <div class="about-photo reveal reveal-delay-1" style="background-image:url('https://ik.imagekit.io/xwsgpirygo/Zemits/Komanda/team.jpeg?tr=w-1200');background-size:cover;background-position:center center;">
       </div>
       <div class="team-cards">
         <div class="team-card reveal reveal-delay-2">
