@@ -77,11 +77,11 @@ const devices = [
       en:['RF lifting','Electroporation','Electroporation (periorbital area)','Hydrodermabrasion','Ultrasonic scrubber','Vacuum therapy','Cold therapy','Oxygen therapy']
     }},
   { name:'Zemits OxiVelour Pro', price:3200, tag:'face', icon:'💨',
-    type:{lv:'Skābekļa terapijas un skābekļa infūzijas ierīce', ru:'Аппарат кислородной терапии и кислородной инфузии', en:'Oxygen therapy & oxygen infusion device'},
+    type:{lv:'Skābekļa un vakuuma terapija', ru:'Кислородная и вакуумная терапия', en:'Oxygen and vacuum therapy'},
     feat:{
-      lv:['Komplektā ietilpst: aerogrāfs un skābekļa kupols','Procedūra tiek papildināta ar aktīvajām vielām'],
-      ru:['В комплекте: аэрограф и кислородный купол','Процедура дополняется активными веществами'],
-      en:['Included: airbrush and oxygen dome','Treatment enhanced with active ingredients']
+      lv:['Komplektā: aerogrāfs, kupols, vakuuma uzgalis','Procedūra tiek papildināta ar aktīvajām vielām'],
+      ru:['В комплекте: аэрограф, купол, вакуумная насадка','Процедура дополняется активными веществами'],
+      en:['Included: airbrush, dome, vacuum attachment','Treatment enhanced with active ingredients']
     }},
   { name:'Zemits Celluspice Pro', price:3000, tag:'both', icon:'🌡️',
     type:{lv:'Vakuuma–termomasāžas iekārta', ru:'Вакуумно-термомассажный аппарат', en:'Vacuum thermo-massage device'},
