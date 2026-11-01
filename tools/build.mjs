@@ -147,11 +147,13 @@ function jsonLd(ctx, lang, page, t) {
       '@type': 'ItemList', name: plain(t.page_title), numberOfItems: ctx.devices.length,
       itemListElement: ctx.devices.map((d, i) => {
         const info = (ctx.deviceInfo[d.name] || {})[lang] || {};
+        // Google's product snippets need an offer; devices priced on request are listed by name only
+        if (d.price === null) return { '@type': 'ListItem', position: i + 1, name: d.name, description: plain(info.desc || d.type[lang]) };
         const product = {
           '@type': 'Product', name: d.name, brand: { '@type': 'Brand', name: 'Zemits' }, category: d.type[lang],
           description: plain(info.desc || d.type[lang]), image: (ctx.deviceImg[d.name] || '').split('?')[0] || undefined,
         };
-        if (d.price !== null) product.offers = { '@type': 'Offer', price: d.price, priceCurrency: 'EUR', url: pageUrl(lang, page), seller: { '@id': SITE + '/#org' } };
+        product.offers = { '@type': 'Offer', price: d.price, priceCurrency: 'EUR', url: pageUrl(lang, page), seller: { '@id': SITE + '/#org' } };
         return { '@type': 'ListItem', position: i + 1, item: product };
       }),
     });
